@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import axios from "axios"
 
 export function MyBarcodeReader(){
   const [hasPermission, setHasPermission] = useState(null);
@@ -17,7 +18,7 @@ export function MyBarcodeReader(){
   const handleBarCodeScanned=({val,data})=>{
       setScannedVal(data)
       setScanned(true)
-      alert(scannedVal)
+      alert("scanned"+scannedVal)
   }
 
 
@@ -30,6 +31,15 @@ export function MyBarcodeReader(){
   }
 
   if (scanned){
+          const zipcode="6995132"
+          axios.get('https://api.zipaddress.net/?',{params:{zipcode:zipcode}})
+                .then(res=>{
+                    //console.log(res.status)
+                    console.log(res.data.data.fullAddress)
+                })
+                .catch((err)=>{
+                    console.log("err->",err)
+                })
       return(
           <View>
             {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
