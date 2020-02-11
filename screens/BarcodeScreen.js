@@ -2,17 +2,46 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 
 import {MyBarcodeReader} from "../components/BarcodeReader"
-import { BarCodeScanner } from 'expo-barcode-scanner';
+import { BookPage } from "../components/BookPage"
 
 export default function BarcodeScreen() {
-    return(
-        <View
-        style={{
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
-        }}>
-            <MyBarcodeReader/>
+    const [scanned, setScanned] = useState(false)
+    const [scannedVal,setScannedVal] = useState(null);
+    const [ bookTitle,setBookTitle] = useState(null);
+    console.log(scanned)
+    if(scanned ){
+        return(
+        <View style={styles.container}>
+            <Text>scanned</Text>
+            <Button title={'Tap to Scan Again'} onPress={() => setScanned(false) } />
         </View>
-          );
+        )
+    }
+    else{
+        return(
+            <View style={styles.container}>
+                <MyBarcodeReader setScannedVal={setScannedVal}/>
+            </View>
+        )
+    }
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 15,
+   // backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems:"center",
+  },
+  container2: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    paddingTop: 15,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+  },
+    text:{
+        fontSize:20,
+    },
+})
