@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 
 import {MyBarcodeReader} from "../components/BarcodeReader"
-import { BookPage } from "../components/BookPage"
 
 export default function BarcodeScreen() {
     const [scanned, setScanned] = useState(false)
     const [scannedVal,setScannedVal] = useState(null);
-    const [ bookTitle,setBookTitle] = useState(null);
     console.log(scanned)
     if(scanned ){
         return(
@@ -20,7 +18,7 @@ export default function BarcodeScreen() {
     else{
         return(
             <View style={styles.container}>
-                <MyBarcodeReader setScannedVal={setScannedVal}/>
+                <MyBarcodeReader />
             </View>
         )
     }
@@ -30,8 +28,8 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 15,
    // backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems:"center",
+   // justifyContent: 'center',
+    //alignItems:"center",
   },
   container2: {
     flex: 1,

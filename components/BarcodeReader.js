@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { Alert, Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import axios from "axios";
+import {
+  useNavigation,
+  useNavigationKey,
+  useFocusState
+} from "react-navigation-hooks";
 
-export function MyBarcodeReader(props){
-  const [scanned, setScanned] = useState(false);
+
+export function MyBarcodeReader(){
   const [hasPermission, setHasPermission] = useState(null);
+  const { navigate } = useNavigation();
 
   useEffect(() => {
     (async () => {
@@ -13,10 +20,32 @@ export function MyBarcodeReader(props){
     })();
   }, []);
 
+ async function bookAPI(isbn) {
+     const id ="1096570044356823244"
+     const url=`https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?format=json&keyword=%E6%9C%AC&booksGenreId=000&isbnjan=${isbn}&applicationId=${id}`
+     console.log(url)
+     const results = await axios.get(url);
+      //// 通信ここまで
+     console.log("results fetched");
+     const item = results.data.Items[0].Item
+     Alert.alert(
+        'Scanned ISBN'+isbn,
+         'title:'+item.title,
+        [
+            {text: 'Move To Book Page', onPress: () =>navigate("BookPage",{item:item})},
+            {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+            },
+        ],
+      {cancelable: false},
+      );
+ }
+
   const handleBarCodeScanned=({val,data})=>{
-      console.log("handleBarCodeScanned")
-      props.setScannedVal(data)
-      setScanned(true)
+      const isbn = (data === null) ? "9784167110116" : data
+      bookAPI("9784167110116")
   }
 
 
@@ -27,17 +56,18 @@ export function MyBarcodeReader(props){
     return <Text>No access to camera</Text>;
   }
 
-    console.log("render")
     return(
-        <View>
-            <Text>aa</Text>
-        <BarCodeScanner
-              barCodeTypes={[BarCodeScanner.Constants.BarCodeType.ean13]}
-              onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-              style={StyleSheet.absoluteFillObject}
+        <Button
+         title="button"
+         onPress={handleBarCodeScanned}
         />
-            <Text>aa</Text>
-        </View>
     )
+    //return(
+    //    <BarCodeScanner
+    //          barCodeTypes={[BarCodeScanner.Constants.BarCodeType.ean13]}
+    //          onBarCodeScanned={handleBarCodeScanned}
+    //          style={StyleSheet.absoluteFillObject}
+    //    />
+    //)
 }
 

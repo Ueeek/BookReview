@@ -8,6 +8,8 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import BarcodeScreen from "../screens/BarcodeScreen";
+import BookScreen from "../screens/BookScreen";
+import BookListScreen from "../screens/BookListScreen";
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -82,13 +84,43 @@ BarcodeStack.navigationOptions = {
   ),
 };
 
+const BookStack = createStackNavigator(
+    {
+        BookPage: BookScreen,
+    },
+    config
+);
+
+BookStack.navigationOptions = {
+  tabBarLabel: 'Book',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+  ),
+};
+const BookListStack = createStackNavigator(
+    {
+        BookList: BookListScreen,
+    },
+    config
+);
+
+BookListStack.navigationOptions = {
+  tabBarLabel: 'BookList',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+  ),
+};
+
+
 BarcodeStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
-  SettingsStack,
- BarcodeStack,
+  //HomeStack,
+  //LinksStack,
+  //SettingsStack,
+  BarcodeStack,
+  BookStack,
+  BookListStack,
 });
 
 tabNavigator.path = '';
