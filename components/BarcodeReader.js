@@ -23,7 +23,7 @@ export function MyBarcodeReader(){
  async function bookAPI(isbn) {
      const id ="1096570044356823244"
      const url=`https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?format=json&keyword=%E6%9C%AC&booksGenreId=000&isbnjan=${isbn}&applicationId=${id}`
-     console.log(url)
+     //console.log(url)
      const results = await axios.get(url);
       //// 通信ここまで
      console.log("results fetched");

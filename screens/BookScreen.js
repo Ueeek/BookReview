@@ -9,13 +9,17 @@ import {
   TouchableOpacity,
   View,
   Linking,
+  Button,
 } from 'react-native';
 import {
   useNavigationParam
 } from "react-navigation-hooks";
+import { useDispatch, useSelector } from "react-redux";
+import { addBook } from "../redux/actions";
 
 export default function BookScreen() {
   const item = useNavigationParam('item');
+  const dispatch =useDispatch();
   if (item){  
       return (
         <View style={styles.container}>
@@ -25,10 +29,8 @@ export default function BookScreen() {
           />
           <Text>title: {item.title}</Text>
           <Text>author: {item.author}</Text>
-          <Text>publisher: {item.publisherName}</Text>
-          <Text>abstract: {item.itemCaption}</Text>
+          <Text onPress={() => { dispatch(addBook(item))}}>add1</Text>
           <Text onPress={() => { Linking.openURL(item.itemUrl)}}> Open In Rakuten</Text>
-          <Text > add To List </Text>
         </View>
       );
   } else {
