@@ -7,8 +7,7 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case ADD_BOOK: {
       const {content} = action.payload;
-        console.log("ADD called")
-        console.log("content",content)
+      alert("book:"+content.title+"is added to List!")
       return {
         ...state,
           bookList:[...state.bookList.filter((v,i)=>v!=content),content],
