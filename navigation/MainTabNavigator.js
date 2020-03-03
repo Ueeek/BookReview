@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform} from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import {Icon } from 'native-base';
@@ -10,15 +10,21 @@ import BookListScreen from "../screens/BookListScreen";
 import HomeScreen from "../screens/HomeScreen";
 
 const config = Platform.select({
-  web: { headerMode: 'screen' },
-  default: {},
+    web: { headerMode: 'screen'},
+    default: {headerMode:"screen"},
 });
 
 const BarcodeStack = createStackNavigator(
   {
-    Barcode: BarcodeScreen,
+    Barcode:{
+        screen:BarcodeScreen,
+        navigationOptions: {
+          title: 'Barcode',
+        },
+    }
   },
-  config
+  config,
+
 );
 
 BarcodeStack.navigationOptions = {
@@ -30,24 +36,39 @@ BarcodeStack.navigationOptions = {
 
 const BookStack = createStackNavigator(
     {
-        BookPage: BookScreen,
+        BookPage:{
+            screen:BookScreen,
+                    navigationOptions: {
+          title: 'BookPage',
+        },
+        }
+
     }, config
 );
 
 BookStack.navigationOptions = {
+    title:"tab1",
+    taat:"agah",
   tabBarLabel: 'Book',
   tabBarIcon: ({ focused }) => (
 				<Icon type={"FontAwesome5"} name={"book"} style={{color: "black", fontSize: 20}} />
   ),
+  title: "barcode",
 };
 const BookListStack = createStackNavigator(
     {
-        BookList: BookListScreen,
+        BookList: {
+            screen:BookListScreen,
+            navigationOptions: {
+            title: 'BookList',
+        },
+        }
     },
     config
 );
 
 BookListStack.navigationOptions = {
+    title:"tab1",
   tabBarLabel: 'BookList',
   tabBarIcon: ({ focused }) => (
 				<Icon type={"FontAwesome5"} name={"list"} style={{color: "black", fontSize: 20}} />
@@ -56,13 +77,21 @@ BookListStack.navigationOptions = {
 
 const HomeStack = createStackNavigator(
     {
-        HomeList: HomeScreen,
+        HomeList: {
+            screen:HomeScreen,
+            navigationOptions: {
+            title: 'Home',
+        },
+        }
+
+
     },
     config
 );
 
 HomeStack.path = '';
 HomeStack.navigationOptions = {
+    title:"tab1",
   tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => (
 				<Icon type={"FontAwesome5"} name={"home"} style={{color: "black", fontSize: 20}} />
@@ -73,7 +102,7 @@ HomeStack.navigationOptions = {
 HomeStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
-    HomeStack,
+  HomeStack,
   BarcodeStack,
   BookStack,
   BookListStack,
