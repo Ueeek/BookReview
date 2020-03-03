@@ -1,19 +1,18 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
   Text,
-  TouchableOpacity,
-  View,
-  Linking,
-  Row,
-  FlatList,
+  Container,
+  Header,
+  List,
+} from 'native-base';
+import {
+  StyleSheet,
+    FlatList
 } from 'react-native';
 
 import {BookRaw} from "../components/BookRaw"
+import Colors from "../constants/Colors"
 
 import {
   useNavigationParam
@@ -21,10 +20,9 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 const renderItem = ({ item, index }) => {
-    console.log("list item->",item.title)
-    console.log("index=>",index)
+    console.log(BookRaw)
     return (
-        <BookRaw item={item} />
+        <BookRaw item={item}/>
     );
   };
 const keyExtractor = (item, index) => {console.log("extractor",index);return index};
@@ -32,29 +30,24 @@ const keyExtractor = (item, index) => {console.log("extractor",index);return ind
 const BookListSelector = state => state.bookList;
 export default function BookListScreen() {
     const bookList = useSelector(BookListSelector)["bookList"];
-    console.log("book List",bookList)
-    console.log("book len",bookList.length)
-const flatList=()=>{
-    return <FlatList
-            data={bookList}
-            keyExtractor={keyExtractor}
-            renderItem={renderItem}
-        />
-}
+    const flatList=()=>{
+        return <FlatList
+                data={bookList}
+                keyExtractor={keyExtractor}
+                renderItem={renderItem}
+            />
+    }
     return(
-        <View>
-        {true && flatList()}
-        <Text> list </Text>
-        <Text> {bookList.length}</Text>
-        </View>
+        <Container style={styles.container}>
+           {bookList.length==0 ? (<Text> please add book to this list</Text>) :  flatList()}
+        </Container>
     );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: "center",
+    backgroundColor: Colors.theme,
   },
 });
 

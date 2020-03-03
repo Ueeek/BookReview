@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, Text, View, StyleSheet, Button } from 'react-native';
+import {Container,Text, View,Button } from 'native-base';
+import {Alert,StyleSheet} from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import axios from "axios";
 import {
@@ -8,10 +9,13 @@ import {
   useFocusState
 } from "react-navigation-hooks";
 
-import useDimentions from "../hooks/useDimentions"
+import useDimentions from "../utils/useDimentions"
+
+import{apiConfig} from "../config/api"
 
 export function MyBarcodeReader(){
   const [hasPermission, setHasPermission] = useState(null);
+  const [scanned, setScanned] = useState(false);
   const { navigate } = useNavigation();
   const windowSize = useDimentions("window");
 
@@ -22,32 +26,41 @@ export function MyBarcodeReader(){
   }, []);
 
  async function bookAPI(isbn) {
-     const id ="1096570044356823244"
-     const url=`https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?format=json&keyword=%E6%9C%AC&booksGenreId=000&isbnjan=${isbn}&applicationId=${id}`
-     const results = await axios.get(url);
-      //// 通信ここまで
-     console.log("results fetched");
-     const item = results.data.Items[0].Item
-     Alert.alert(
-        'Scanned ISBN'+isbn,
-         'title:'+item.title,
-        [
-            {text: 'Move To Book Page', onPress: () =>navigate("BookPage",{item:item})},
-            {
-                text: 'Cancel',
-                onPress: () => console.log('Cancel Pressed'),
-                style: 'cancel',
-            },
-        ],
-      {cancelable: false},
-      );
+     console.log("isbn"+isbn)
+     const id = apiConfig.RAKUTEN_API_ID
+     const affiliateId=apiConfig.AFFILIATEID
+     const url=`https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?format=json&keyword=%E6%9C%AC&booksGenreId=000&isbnjan=${isbn}&applicationId=${id}&affiliateId=${affiliateId}`
+     axios.get(url)
+        .then((res)=>{
+            const item = res.data.Items[0].Item
+            if (typeof item==="undefined"){
+                setScanned(false)
+                return;
+            }
+            Alert.alert(
+             item.title,
+             item.author,
+            [
+                {text: 'Move To Book Page', onPress: () =>{setScanned(false); navigate("BookPage",{item:item})}},
+                {
+                    text: 'Scan Again',
+                    onPress: ()=>{setScanned(false)},
+                    style: 'cancel',
+                },
+            ],
+            {cancelable: false},
+            );
+        })
+        .catch((err)=>{
+            setScanned(false)
+        })
  }
 
   const handleBarCodeScanned=({val,data})=>{
-      const isbn = (data === null) ? "9784167110116" : data
+      const isbn = (data === undefined) ? "9784167110116" : data
+	  setScanned(true)
       bookAPI(isbn)
   }
-
 
   if (hasPermission === null) {
     return <Text>Requesting for camera permission</Text>;
@@ -57,20 +70,19 @@ export function MyBarcodeReader(){
   }
 
     //return(
-    //    <Button
-    //     title="button"
-    //     onPress={handleBarCodeScanned}
-    //    />
+    //    <Button onPress={handleBarCodeScanned}>
+    //        <Text>Press</Text>
+    //    </Button>
     //)
     return(
-        <View style={styles.container}>
+        <Container style={styles.container}>
             <Text style={styles.discription}> scan your ISBN code</Text>
             <BarCodeScanner
                   barCodeTypes={[BarCodeScanner.Constants.BarCodeType.ean13]}
-                  onBarCodeScanned={handleBarCodeScanned}
+                  onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                   style={[StyleSheet.absoluteFillObject, styles.scanner(windowSize.width,windowSize.height)]}
             />
-        </View>
+        </Container>
     )
 
 }
@@ -86,7 +98,7 @@ const styles = StyleSheet.create({
     },
     scanner :(wid,hei)=>({
         width: wid,
-        height: hei*0.1,
+        height: hei,
     })
 });
 

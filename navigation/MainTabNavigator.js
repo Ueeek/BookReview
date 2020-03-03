@@ -2,11 +2,8 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import {Icon } from 'native-base';
 
-import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
 import BarcodeScreen from "../screens/BarcodeScreen";
 import BookScreen from "../screens/BookScreen";
 import BookListScreen from "../screens/BookListScreen";
@@ -16,60 +13,6 @@ const config = Platform.select({
   default: {},
 });
 
-const HomeStack = createStackNavigator(
-  {
-    Home: HomeScreen,
-  },
-  config
-);
-
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
-  ),
-};
-
-HomeStack.path = '';
-
-const LinksStack = createStackNavigator(
-  {
-    Links: LinksScreen,
-  },
-  config
-);
-
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
-  ),
-};
-
-LinksStack.path = '';
-
-const SettingsStack = createStackNavigator(
-  {
-    Settings: SettingsScreen,
-  },
-  config
-);
-
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
-  ),
-};
-
-SettingsStack.path = '';
 const BarcodeStack = createStackNavigator(
   {
     Barcode: BarcodeScreen,
@@ -80,7 +23,7 @@ const BarcodeStack = createStackNavigator(
 BarcodeStack.navigationOptions = {
   tabBarLabel: 'Barcode',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+				<Icon type={"FontAwesome5"} name={"barcode"} style={{color: "black", fontSize: 20}} />
   ),
 };
 
@@ -94,7 +37,7 @@ const BookStack = createStackNavigator(
 BookStack.navigationOptions = {
   tabBarLabel: 'Book',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+				<Icon type={"FontAwesome5"} name={"book"} style={{color: "black", fontSize: 20}} />
   ),
 };
 const BookListStack = createStackNavigator(
@@ -107,7 +50,7 @@ const BookListStack = createStackNavigator(
 BookListStack.navigationOptions = {
   tabBarLabel: 'BookList',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+				<Icon type={"FontAwesome5"} name={"list"} style={{color: "black", fontSize: 20}} />
   ),
 };
 
@@ -115,9 +58,6 @@ BookListStack.navigationOptions = {
 BarcodeStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
-  //HomeStack,
-  //LinksStack,
-  //SettingsStack,
   BarcodeStack,
   BookStack,
   BookListStack,

@@ -1,30 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import {Image, Alert, Text, View, StyleSheet, Button } from 'react-native';
+import {TouchableOpacity,Alert, StyleSheet} from 'react-native';
+import {Image,Left,Body,Right, Text, View,Container,ListItem,Thumbnail, Button } from 'native-base';
 import {
   useNavigation,
   useNavigationKey,
   useFocusState
 } from "react-navigation-hooks";
-import useDimentions from "../hooks/useDimentions"
+import useDimentions from "../utils/useDimentions"
 
 
 export function BookRaw({item}){
     const windowSize = useDimentions("window");
     const { navigate } = useNavigation();
     return(
-        <View style={styles.bookRaw}>
-            <View style={styles.bookContainer}>
-                <Image
-                    source={{ uri: item.smallImageUrl}}
-                    style={styles.image}
-                />
-                <View stlye={styles.textContainer}>
-                    <Text style={styles.text}>title</Text>
-                    <Text style={styles.text}>{item.title}</Text>
-                </View>
-            </View> 
-            <Button title="tap to detail" stlye={styles.button} onPress={()=>navigate("BookPage",{item:item})}/>
-        </View>
+         <ListItem onPress={()=>navigate("BookPage",{item:item})} style={styles.bookRaw}>
+                <Left>
+                    <Thumbnail square source={{ uri:item.smallImageUrl}} large/>
+                </Left>
+                <Body>
+                    <Text>{item.title}</Text>
+                    <Text note numberOfLines={1}>{item.author}</Text>
+                </Body>
+        </ListItem>
     );
 }
 
@@ -32,10 +29,11 @@ const styles = StyleSheet.create({
     bookRaw:{
         marginTop:5,
         marginBottom:5,
+        paddingLeft:10,
+        paddingRight:10,
         flex:1,
-        backgroundColor:"#ddd",
+        backgroundColor:"white",
         alignItems:"center",
-        justifyContent:"center",
     },
     text:{
         fontSize:10,
@@ -49,7 +47,7 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection:"row",
         alignItems:"center",
-        justifyContent: 'space-evenly'
+        justifyContent: 'space-around'
     },
     textContainer:{
         flex:1,
