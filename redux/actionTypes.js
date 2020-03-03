@@ -1,3 +1,6 @@
 export const ADD_BOOK = "ADD_BOOK";
 export const DELETE_BOOK = "DELETE_BOOK";
 export const GET_BOOKS = "GET_BOOKS";
+export const FETCH_RANKING = "FETCH_RANKING";
+export const FETCH_RANKING_SUCCESS = "FETCH_RANKING_SUCCESS";
+export const FETCH_RANKING_FAILURE = "FETCH_RANKING_FAILURE";

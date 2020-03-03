@@ -9,7 +9,7 @@ import {
   useFocusState
 } from "react-navigation-hooks";
 
-import useDimentions from "../utils/useDimentions"
+import useDimentions from "../hooks/useDimentions"
 
 import{apiConfig} from "../config/api"
 

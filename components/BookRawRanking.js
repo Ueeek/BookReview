@@ -9,7 +9,7 @@ import {
 import useDimentions from "../hooks/useDimentions"
 
 
-export function BookRaw({item}){
+export function BookRawRanking({item}){
     const windowSize = useDimentions("window");
     const { navigate } = useNavigation();
     return(

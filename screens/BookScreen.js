@@ -17,8 +17,8 @@ import {
   useNavigationParam
 } from "react-navigation-hooks";
 import { useDispatch, useSelector } from "react-redux";
-import { addBook,deleteBook } from "../redux/actions";
-import useDimentions from "../utils/useDimentions"
+import { addBook,deleteBook } from "../redux/actions/bookList";
+import useDimentions from "../hooks/useDimentions"
 
 import Colors from "../constants/Colors"
 
@@ -37,12 +37,6 @@ export default function BookScreen() {
       return (
         <Content>
         <Container style={styles.container}>
-            <Container style={styles.textContainer}>
-                <Text style={styles.titleText}>{item.title}</Text>
-                <Text style={styles.authorText}>{item.reviewAverage} ({item.reviewCount} reviewers)</Text>
-                <Text style={styles.authorText}>Author: {item.author}</Text>
-                <Text style={styles.authorText}>publisher: {item.publisherName}</Text>
-            </Container> 
           <Container style={styles.bookContainer}>
             <Image
                 resizeMode="contain"
@@ -50,6 +44,12 @@ export default function BookScreen() {
                 style={styles.image(windowSize.width)}
             />
           </Container>
+            <Container style={styles.textContainer}>
+                <Text style={styles.titleText}>{item.title}</Text>
+                <Text style={styles.authorText}>{item.reviewAverage} ({item.reviewCount} reviewers)</Text>
+                <Text style={styles.authorText}>Author: {item.author}</Text>
+                <Text style={styles.authorText}>publisher: {item.publisherName}</Text>
+            </Container> 
           <Container style={styles.buttonContainer}>
               {searchIsbn(bookList,item.isbn) 
                   ? (<Button block bordered iconLeft onPress={()=>{dispatch(deleteBook(item))}}>
@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
     bookContainer:{
       flex:1,
       backgroundColor:"#ddd",
+      backgroundColor:"#FFF",
   },
   image:(w)=>({
       width:w*0.8,

@@ -4,6 +4,7 @@ const initialState = {
 }
 
 export default function(state = initialState, action) {
+  console.log("book List=>",action.type)
   switch (action.type) {
     case ADD_BOOK: {
       const {content} = action.payload;
@@ -21,7 +22,7 @@ export default function(state = initialState, action) {
           };
       }
     default:
-      console.log("default called")
+          console.log("rank default called")
       return state;
   }
 }

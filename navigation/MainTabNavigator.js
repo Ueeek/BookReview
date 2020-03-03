@@ -7,6 +7,7 @@ import {Icon } from 'native-base';
 import BarcodeScreen from "../screens/BarcodeScreen";
 import BookScreen from "../screens/BookScreen";
 import BookListScreen from "../screens/BookListScreen";
+import HomeScreen from "../screens/HomeScreen";
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -30,8 +31,7 @@ BarcodeStack.navigationOptions = {
 const BookStack = createStackNavigator(
     {
         BookPage: BookScreen,
-    },
-    config
+    }, config
 );
 
 BookStack.navigationOptions = {
@@ -54,10 +54,26 @@ BookListStack.navigationOptions = {
   ),
 };
 
+const HomeStack = createStackNavigator(
+    {
+        HomeList: HomeScreen,
+    },
+    config
+);
 
-BarcodeStack.path = '';
+HomeStack.path = '';
+HomeStack.navigationOptions = {
+  tabBarLabel: 'Home',
+  tabBarIcon: ({ focused }) => (
+				<Icon type={"FontAwesome5"} name={"home"} style={{color: "black", fontSize: 20}} />
+  ),
+};
+
+
+HomeStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
+    HomeStack,
   BarcodeStack,
   BookStack,
   BookListStack,
