@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import {
   Text,
     Button,
@@ -13,7 +13,7 @@ import {
 import {BookRaw} from "../components/BookRaw"
 import Colors from "../constants/Colors"
 import { fetchRanking } from "../redux/actions/bookRanking";
-import { useEffect,useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   useNavigationParam
@@ -37,11 +37,11 @@ export default function HomeScreen() {
                 renderItem={renderItem}
             />
     }
+    useEffect(() => {
+        dispatch(fetchRanking())
+    },[]) 
     return(
         <Container style={styles.container}>
-            <Button onPress={()=>{dispatch(fetchRanking())}}>
-                <Text>fetch data</Text>
-            </Button>
            {ranking.length==0 ? (<Text> please add book to this list</Text>) :  flatList()}
         </Container>
     );
