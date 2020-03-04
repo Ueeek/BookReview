@@ -1,12 +1,12 @@
 import { AppLoading } from 'expo';
-import React, { useState } from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {Text, Platform, StatusBar, StyleSheet, View } from 'react-native';
 import {Container} from "native-base"
 import { Provider, connect } from 'react-redux';
 import store from './redux/store'
 
-import Colors from "./constants/Colors"
 import AppNavigator from './navigation/AppNavigator';
+
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
