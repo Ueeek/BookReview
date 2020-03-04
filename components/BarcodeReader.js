@@ -5,8 +5,6 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import axios from "axios";
 import {
   useNavigation,
-  useNavigationKey,
-  useFocusState
 } from "react-navigation-hooks";
 
 import useDimentions from "../hooks/useDimentions"
@@ -31,6 +29,7 @@ export function MyBarcodeReader(){
      const affiliateId=apiConfig.AFFILIATEID
      const url=`https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?format=json&keyword=%E6%9C%AC&booksGenreId=000&isbnjan=${isbn}&applicationId=${id}&affiliateId=${affiliateId}`
      axios.get(url)
+       
         .then((res)=>{
             const item = res.data.Items[0].Item
             if (typeof item==="undefined"){
