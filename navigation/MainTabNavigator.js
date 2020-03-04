@@ -8,6 +8,7 @@ import BarcodeScreen from "../screens/BarcodeScreen";
 import BookScreen from "../screens/BookScreen";
 import BookListScreen from "../screens/BookListScreen";
 import HomeScreen from "../screens/HomeScreen";
+import Colors from "../constants/Colors";
 
 const config = Platform.select({
     web: { headerMode: 'screen'},
@@ -20,6 +21,10 @@ const BarcodeStack = createStackNavigator(
         screen:BarcodeScreen,
         navigationOptions: {
           title: 'Barcode',
+          headerStyle: {
+            backgroundColor: Colors.navy,
+          },
+          headerTintColor: Colors.theme,
         },
     }
   },
@@ -40,9 +45,12 @@ const BookStack = createStackNavigator(
             screen:BookScreen,
                     navigationOptions: {
           title: 'BookPage',
+          headerStyle: {
+            backgroundColor: Colors.navy,
+          },
+          headerTintColor: Colors.theme,
         },
         }
-
     }, config
 );
 
@@ -61,6 +69,10 @@ const BookListStack = createStackNavigator(
             screen:BookListScreen,
             navigationOptions: {
             title: 'BookList',
+          headerStyle: {
+            backgroundColor: Colors.navy,
+          },
+          headerTintColor: Colors.theme,
         },
         }
     },
@@ -81,6 +93,10 @@ const HomeStack = createStackNavigator(
             screen:HomeScreen,
             navigationOptions: {
             title: 'Home',
+          headerStyle: {
+            backgroundColor: Colors.navy,
+          },
+          headerTintColor: Colors.theme,
         },
         }
 

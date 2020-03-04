@@ -8,13 +8,10 @@ const fetchRankingRequest = () => {
     type: FETCH_RANKING
   }
 }
-export const fetchRanking = ()=>{
+export const fetchRanking = (genre)=>{
     const id=apiConfig.RAKUTEN_API_ID;
     const affiliateId=apiConfig.AFFILIATEID
-    const all_genre_id=apiConfig.ALL_GENRE_ID
-    //const url=`https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?format=json&affiliateId=${affiliateId}&page=1&applicationId=${id}&genreId=${all_genre_id}`
-    const url=`https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?format=json&booksGenreId=001&applicationId=${id}&affiliateId=${affiliateId}`
-    //ret
+    const url=`https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?format=json&booksGenreId=${genre}&applicationId=${id}&affiliateId=${affiliateId}`
     return async (dispatch) => {
     dispatch(fetchRankingRequest())
     try {

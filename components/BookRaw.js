@@ -9,7 +9,7 @@ import {
 import useDimentions from "../hooks/useDimentions"
 
 
-export function BookRaw({item}){
+export function BookRaw({item,rank}){
     const windowSize = useDimentions("window");
     const { navigate } = useNavigation();
     return(
@@ -21,6 +21,9 @@ export function BookRaw({item}){
                     <Text>{item.title}</Text>
                     <Text note numberOfLines={1}>{item.author}</Text>
                 </Body>
+                <Right>
+                    <Text style={styles.rankText}>{rank}</Text>
+                </Right>
         </ListItem>
     );
 }
@@ -52,5 +55,9 @@ const styles = StyleSheet.create({
     textContainer:{
         flex:1,
         justifyContent:"space-around",
+    },
+    rankText:{
+        fontSize:20,
+        fontWeight:"bold",
     },
 });
