@@ -35,7 +35,6 @@ export default function BookScreen() {
   const windowSize = useDimentions("window");
   if (item){  
       return (
-        <Content>
         <Container style={styles.container}>
           <Container style={styles.bookContainer}>
             <Image
@@ -53,7 +52,7 @@ export default function BookScreen() {
           <Container style={styles.buttonContainer}>
               {searchIsbn(bookList,item.isbn) 
                   ? (<Button block bordered iconLeft onPress={()=>{dispatch(deleteBook(item))}}>
-                     <Icon type={"MaterialCommunityIcons"} name={"shopping-remove"} style={{color: Colors.blue, fontSize: 20}} />
+                     <Icon type={"MaterialCommunityIcons"} name={"playlist-remove"} style={{color: Colors.blue, fontSize: 20}} />
                       <Text>delete</Text>
                       </Button>)
                   : (<Button block bordered iconLeft onPress={()=>{dispatch(addBook(item))}}>
@@ -67,7 +66,6 @@ export default function BookScreen() {
               </Button>
           </Container>
         </Container>
-        </Content>
       );
   } else {
       return(
@@ -92,6 +90,7 @@ const styles = StyleSheet.create({
       flex:1,
   }),
   textContainer:{
+      flex:1,
       paddingRight:5,
       paddingLeft:5,
   },
@@ -106,9 +105,9 @@ const styles = StyleSheet.create({
       fontWeight:"bold",
   },
   buttonContainer:{
-      flex:0.5,
+      flex:1,
       alignItems:"center",
-      justifyContent:"space-around",
+      justifyContent:"center",
   },
 });
 

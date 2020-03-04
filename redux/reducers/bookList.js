@@ -18,6 +18,7 @@ export default function(state = initialState, action) {
     }
       case DELETE_BOOKLIST:{
           const {content} = action.payload;
+          alert("book:"+content.title+"is removed from List!")
           return{
               ...state,
               bookList:[...state.bookList.filter((v,i)=>v!=content)],

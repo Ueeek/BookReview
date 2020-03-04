@@ -41,7 +41,7 @@ export function MyBarcodeReader(){
              item.title,
              item.author,
             [
-                {text: 'Move To Book Page', onPress: () =>{setScanned(false); navigate("BookPage",{item:item})}},
+                {text: 'Move To Book Page', onPress: () =>{navigate("BookPage",{item:item})}},
                 {
                     text: 'Scan Again',
                     onPress: ()=>{setScanned(false)},
@@ -76,12 +76,14 @@ export function MyBarcodeReader(){
     //)
     return(
         <Container style={styles.container}>
-            <Text style={styles.discription}> scan your ISBN code</Text>
             <BarCodeScanner
                   barCodeTypes={[BarCodeScanner.Constants.BarCodeType.ean13]}
                   onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-                  style={[StyleSheet.absoluteFillObject, styles.scanner(windowSize.width,windowSize.height)]}
-            />
+                  style={[StyleSheet.absoluteFillObject, styles.scanner(windowSize.width,windowSize.height)]}>
+                <Button transparent bordered active={!scanned} onPress={()=>{setScanned(false)}}>
+                    <Text style={styles.discription}> {scanned? "retry": "scanning " }  </Text>
+                </Button>
+            </BarCodeScanner>
         </Container>
     )
 
@@ -95,6 +97,8 @@ const styles = StyleSheet.create({
     },
     discription:{
         fontSize:20,
+        textAlign: 'center',
+        color: 'white'
     },
     scanner :(wid,hei)=>({
         width: wid,
