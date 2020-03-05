@@ -11,5 +11,6 @@ export const FETCH_RANKING_SUCCESS = "FETCH_RANKING_SUCCESS";
 export const FETCH_RANKING_FAILURE = "FETCH_RANKING_FAILURE";
 
 //Login
-export const LOGIN = "LOGIN"
+export const SIGNUP_MAIL="SIGNUP_MAIL"
+export const LOGIN_MAIL= "LOGIN_MAIL"
 export const LOGOUT = "LOGOUT"
