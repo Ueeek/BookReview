@@ -8,6 +8,8 @@ import BarcodeScreen from "../screens/BarcodeScreen";
 import BookScreen from "../screens/BookScreen";
 import BookListScreen from "../screens/BookListScreen";
 import HomeScreen from "../screens/HomeScreen";
+import SettingScreen from "../screens/SettingScreen";
+
 import Colors from "../constants/Colors";
 
 const config = Platform.select({
@@ -116,12 +118,38 @@ HomeStack.navigationOptions = {
 
 
 HomeStack.path = '';
+const SettingStack = createStackNavigator(
+  {
+    Setting:{
+        screen:SettingScreen,
+        navigationOptions: {
+          title: 'Setting',
+          headerStyle: {
+            backgroundColor: Colors.navy,
+          },
+          headerTintColor: Colors.theme,
+        },
+    }
+  },
+  config,
+);
+
+SettingStack.navigationOptions = {
+  tabBarLabel: 'Setting',
+  tabBarIcon: ({ focused }) => (
+				<Icon type={"FontAwesome5"} name={"cog"} style={{color: "black", fontSize: 20}} />
+  ),
+};
+SettingStack.path = '';
+
+
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   BarcodeStack,
   BookStack,
   BookListStack,
+  SettingStack,
 });
 
 tabNavigator.path = '';
