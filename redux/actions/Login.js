@@ -4,9 +4,21 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
     LOGOUT_SUCCESS,
-    LOGOUT_FAILURE
+    LOGOUT_FAILURE,
+    CHANGE_NAME,
+    CHANGE_PASS,
+
 } from "../actionTypes"
 import firebase from "firebase"
+
+
+export const change_name=(name)=>({
+    type:CHANGE_NAME,name:name
+})
+
+export const change_pass=(pass)=>({
+    type:CHANGE_PASS,pass:pass
+})
 
 export const signup_mail = (email,password)=>{
     return (dispatch)=>{

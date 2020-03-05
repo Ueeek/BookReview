@@ -3,13 +3,17 @@ import {
     SIGNUP_FAILURE,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
-    LOGOUT_SUCCESS
-    ,LOGOUT_FAILURE
+    LOGOUT_SUCCESS,
+    LOGOUT_FAILURE,
+    CHANGE_NAME,
+    CHANGE_PASS,
 } from "../actionTypes"
 
 const initialState = {
     user:null,
     error:"",
+    name:"",
+    pass:"",
 }
 
 export default function(state = initialState, action) {
@@ -43,6 +47,16 @@ export default function(state = initialState, action) {
       case LOGOUT_SUCCESS:{
           return{
               ...initialState
+          }
+      }
+      case CHANGE_PASS:{
+          return{
+              ...state,pass:action.pass
+          }
+      }
+      case CHANGE_NAME:{
+          return{
+              ...state,name:action.name
           }
       }
     default:

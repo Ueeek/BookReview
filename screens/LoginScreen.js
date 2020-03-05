@@ -1,37 +1,29 @@
 import React, {useState, useEffect } from 'react';
 import {
   StyleSheet,
-  Linking,
-  Image,
 } from 'react-native';
 import {
     Form,
     Input,
     Item,
-  Content,
   Text,
   Container,
   Button,
-  Card,
   Icon,
 } from 'native-base';
 import {
-  useNavigationParam,
     useNavigation,
 } from "react-navigation-hooks";
 import { useDispatch, useSelector } from "react-redux";
-import { addBook,deleteBook } from "../redux/actions/bookList";
-import { login_mail,signup_mail,logout} from "../redux/actions/Login";
-import useDimentions from "../hooks/useDimentions"
-
+import {change_name,change_pass, login_mail,signup_mail,logout} from "../redux/actions/Login";
 import Colors from "../constants/Colors"
 
 export default function LoginScreen() {
     const dispatch = useDispatch();
-    const [mail,setMail] = useState("");
-    const  [pass,setPass] = useState("");
     const {navigate} = useNavigation();
     const user = useSelector(state=>state.Login)["user"]
+    const name = useSelector(state=>state.Login)["name"]
+    const pass = useSelector(state=>state.Login)["pass"]
     useEffect(()=>{
     },[user])
 
@@ -43,8 +35,8 @@ export default function LoginScreen() {
                 <Item>
                   <Input
                     placeholder="Username"
-                    value={mail}
-                    onChangeText={(text)=>setMail(text)}
+                    value={name}
+                    onChangeText={(text)=>dispatch(change_name(text))}
                     autoCapitalize="none"
                     autoCorrect={false}
                     dataDetectorTypes="address"
@@ -55,7 +47,7 @@ export default function LoginScreen() {
                   <Input
                     placeholder="PassWard"
                     value={pass}
-                    onChangeText={(text)=>setPass(text)}
+                    onChangeText={(text)=>dispatch(change_pass(text))}
                     autoCapitalize="none"
                     autoCorrect={false}
                     secureTextEntry={true}
@@ -65,11 +57,11 @@ export default function LoginScreen() {
             </Container>
           {user===null ?(
             <Container style={{justifyContent:"center"}}>
-            <Button iconLeft bordered onPress={()=>dispatch(login_mail(mail,pass))}>
+            <Button iconLeft bordered onPress={()=>dispatch(login_mail(name,pass))}>
 				<Icon type={"FontAwesome5"} name={"envelope"} style={{color: "black", fontSize: 20}} />
                 <Text> Login</Text>
             </Button>
-            <Button iconLeft bordered onPress={()=>dispatch(signup_mail(mail,pass))}>
+            <Button iconLeft bordered onPress={()=>dispatch(signup_mail(name,pass))}>
 				<Icon type={"FontAwesome5"} name={"envelope"} style={{color: "black", fontSize: 20}} />
                 <Text>signup</Text>
             </Button>
