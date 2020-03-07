@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {change_name,change_pass, login_mail,signup_mail,logout} from "../redux/actions/Login";
 import Colors from "../constants/Colors"
 
-export default function LoginScreen() {
+export default function SignUpScreen() {
     const dispatch = useDispatch();
     const {navigate} = useNavigation();
     const user = useSelector(state=>state.Login)["user"]
@@ -57,12 +57,13 @@ export default function LoginScreen() {
             </Container>
           {user===null ?(
             <Container style={{justifyContent:"center"}}>
-            <Button iconLeft bordered onPress={()=>dispatch(login_mail(name,pass))}>
+            <Button iconLeft bordered onPress={()=>dispatch(signup_mail(name,pass))}>
 				<Icon type={"FontAwesome5"} name={"envelope"} style={{color: "black", fontSize: 20}} />
-                <Text> Login</Text>
+                <Text>signup</Text>
             </Button>
-            <Button iconLeft bordered onPress={()=>navigate("SignUp")}>
-                <Text>move to signup page</Text>
+            <Button iconLeft bordered onPress={()=>navigate("Login")}>
+				<Icon type={"FontAwesome5"} name={"envelope"} style={{color: "black", fontSize: 20}} />
+                <Text>go back</Text>
             </Button>
             </Container>
           ):
