@@ -1,4 +1,6 @@
 import { ADD_BOOKLIST,FETCH_BOOKLIST,FETCH_BOOKLIST_FAILURE,FETCH_BOOKLIST_SUCCESS,DELETE_BOOKLIST} from "../actionTypes";
+
+import {set_Content} from "../../firebase"
 const initialState = {
     bookList: [],
     loading:false,
@@ -10,6 +12,7 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case ADD_BOOKLIST: {
       const {content} = action.payload;
+      set_Content(content);
       alert("book:"+content.title+"is added to List!")
       return {
         ...state,

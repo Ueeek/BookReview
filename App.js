@@ -12,11 +12,10 @@ import AppNavigator from './navigation/AppNavigator';
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
+  const firebaseApp = !firebase.apps.length
+    ? firebase.initializeApp(firebaseConfig)
+    : firebase.app();
 
- useEffect(()=>{
-    firebase.initializeApp(firebaseConfig);
- },[]
- )
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
       <AppLoading

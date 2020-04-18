@@ -68,11 +68,11 @@ export function MyBarcodeReader(){
     return <Text>No access to camera</Text>;
   }
 
-    //return(
-    //    <Button onPress={handleBarCodeScanned}>
-    //        <Text>Press</Text>
-    //    </Button>
-    //)
+    return(
+        <Button onPress={handleBarCodeScanned}>
+            <Text>Press</Text>
+        </Button>
+    )
     return(
         <Container style={styles.container}>
             <BarCodeScanner
