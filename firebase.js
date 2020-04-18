@@ -54,5 +54,17 @@ export const set_Content =(content)=>{
     const userCollection = db.collection("Users");
     const {uid} =  getUid();
     const userRef = userCollection.doc(uid).collection("books").doc(content.isbn).set(content);
-    console.log(userRef);
 }
+
+export const delete_Content=(content)=>{
+    const {uid} = getUid();
+    const userCollection = db.collection("Users");
+    let deleteDoc = userCollection.doc(uid).collection("books").doc(content.isbn).delete()
+}
+
+export const fetch_books=()=>{
+    const {uid} = getUid();
+    const userCollection = db.collection("Users");
+    return userCollection.doc(uid).collection("books").get()
+}
+

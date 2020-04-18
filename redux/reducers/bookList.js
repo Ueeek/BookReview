@@ -1,46 +1,45 @@
 import { ADD_BOOKLIST,FETCH_BOOKLIST,FETCH_BOOKLIST_FAILURE,FETCH_BOOKLIST_SUCCESS,DELETE_BOOKLIST} from "../actionTypes";
+import {fetch_books,delete_Content,set_Content} from "../../firebase"
 
-import {set_Content} from "../../firebase"
 const initialState = {
     bookList: [],
     loading:false,
     error:"",
 }
-
 export default function(state = initialState, action) {
-  console.log("book List=>",action.type)
   switch (action.type) {
     case ADD_BOOKLIST: {
       const {content} = action.payload;
+      console.log("add=>",content);
       set_Content(content);
       alert("book:"+content.title+"is added to List!")
-      return {
-        ...state,
-          bookList:[...state.bookList.filter((v,i)=>v!=content),content],
-      };
+        return{state}
     }
       case DELETE_BOOKLIST:{
           const {content} = action.payload;
+          delete_Content(content);
           alert("book:"+content.title+"is removed from List!")
-          return{
-              ...state,
-              bookList:[...state.bookList.filter((v,i)=>v!=content)],
-          };
+          return{state}
       }
     case FETCH_BOOKLIST:{
-        return{...initialState,...state,lloading:true}
+        return{...initialState,...state,loading:true}
     }
     case FETCH_BOOKLIST_SUCCESS:{
-        const {content} = action.payload;
+        const data = action.payload;
+        console.log("FETCHBOOKLISTSUCCESS")
+        console.log("data=>",data.length);
+        console.log("data=>",data);
         return{
             ...state,
-            bookList:{...initialState, bookList:content.payload}
+            bookList:data
         }
     }
     case FETCH_BOOKLIST_FAILURE:{
-        const {content} = action.payload;
+        console.log("FETCHBOOKLISTFAILURE")
+        console.log(action.payload);
+        const {err} = action.payload;
         return{
-            ...initialState,error:content
+            ...initialState,error:err
         }
     }
 

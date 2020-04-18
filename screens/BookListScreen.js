@@ -1,5 +1,5 @@
 import * as WebBrowser from 'expo-web-browser';
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import {
   Text,
   Container,
@@ -19,16 +19,21 @@ import {
 } from "react-navigation-hooks";
 import { useDispatch, useSelector } from "react-redux";
 
+import{fetchBookList} from "../redux/actions/bookList"
+
 const renderItem = ({ item, index }) => {
-    console.log(BookRaw)
     return (
         <BookRaw item={item}/>
     );
   };
-const keyExtractor = (item, index) => {console.log("extractor",index);return index};
+const keyExtractor = (item, index) => {return index};
 
 const BookListSelector = state => state.bookList;
 export default function BookListScreen() {
+    const dispatch =useDispatch();
+    useEffect(()=>{
+        dispatch(fetchBookList());
+    },[]);
     const bookList = useSelector(BookListSelector)["bookList"];
     const flatList=()=>{
         return <FlatList

@@ -17,12 +17,15 @@ import {
   useNavigationParam
 } from "react-navigation-hooks";
 import { useDispatch, useSelector } from "react-redux";
-import { addBook,deleteBook } from "../redux/actions/bookList";
+import { addBook,deleteBook,fetchBookList } from "../redux/actions/bookList";
 import useDimentions from "../hooks/useDimentions"
 
 import Colors from "../constants/Colors"
 
 function searchIsbn(list,isbn){
+    console.log("search");
+    console.log("list=>",list);
+
     const ret = list.some(value=>value.isbn==isbn)
     return ret;
 }
@@ -32,7 +35,9 @@ export default function BookScreen() {
   const dispatch =useDispatch();
   const BookListSelector = state => state.bookList;
   const bookList = useSelector(BookListSelector)["bookList"];
+    console.log("bookList=>",bookList);
   const windowSize = useDimentions("window");
+    console.log("item=>",item);
   if (item){  
       return (
         <Container style={styles.container}>
@@ -51,11 +56,11 @@ export default function BookScreen() {
             </Container> 
           <Container style={styles.buttonContainer}>
               {searchIsbn(bookList,item.isbn) 
-                  ? (<Button block bordered iconLeft onPress={()=>{dispatch(deleteBook(item))}}>
+                  ? (<Button block bordered iconLeft onPress={()=>{dispatch(deleteBook(item));dispatch(fetchBookList())}}>
                      <Icon type={"MaterialCommunityIcons"} name={"playlist-remove"} style={{color: Colors.blue, fontSize: 20}} />
                       <Text>delete</Text>
                       </Button>)
-                  : (<Button block bordered iconLeft onPress={()=>{dispatch(addBook(item))}}>
+                  : (<Button block bordered iconLeft onPress={()=>{dispatch(addBook(item));dispatch(fetchBookList())}}>
                         <Icon type={"MaterialCommunityIcons"} name={"playlist-plus"} style={{color: Colors.blue, fontSize: 20}} />
                         <Text>add</Text>
                     </Button>)}

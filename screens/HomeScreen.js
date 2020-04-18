@@ -21,6 +21,7 @@ import {
 import {BookRaw} from "../components/BookRaw"
 import Colors from "../constants/Colors"
 import { fetchRanking } from "../redux/actions/bookRanking";
+import{fetchBookList} from "../redux/actions/bookList";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -28,7 +29,6 @@ import {
 } from "react-navigation-hooks";
 
 const renderItem = ({ item, index }) => {
-    console.log(item.Item)
     return (
         <BookRaw item={item.Item} rank={index+1}/>
     );
@@ -52,7 +52,10 @@ export default function HomeScreen() {
     useEffect(() => {
         dispatch(fetchRanking(genre))
     },[genre]) 
-    console.log(genre)
+    useEffect(()=>{
+        dispatch(fetchBookList());
+    },[])
+
     return(
         <Container style={styles.container}>
         <Text>select Genre</Text>
