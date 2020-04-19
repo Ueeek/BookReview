@@ -53,7 +53,6 @@ export default function(state = initialState, action) {
     }
 
     default:
-          console.log("rank default called")
       return state;
   }
 }

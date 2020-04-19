@@ -22,7 +22,6 @@ const fetchBookListRequest = ()=>{
 }
 
 export const fetchBookList = () =>{
-    console.log("fetch called");
     return async(dispatch)=>{
         dispatch(fetchBookListRequest())
         try{
