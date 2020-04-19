@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import {StyleSheet} from "react-native"
+import {Footer, Text, View,Body,Button,Container,Header} from 'native-base';
 
 import {MyBarcodeReader} from "../components/BarcodeReader"
-import { BarCodeScanner } from 'expo-barcode-scanner';
 
 export default function BarcodeScreen() {
     return(
-        <View
-        style={{
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
-        }}>
+        <Container style={styles.container}>
             <MyBarcodeReader/>
-        </View>
-          );
+        </Container>
+    )
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+})
