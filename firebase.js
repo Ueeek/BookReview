@@ -45,11 +45,17 @@ export const addUserToDB =()=>{
     }
 }
 
+export const getNowDate = () => {
+    return firebase.firestore.FieldValue.serverTimestamp();
+}
+
 export const set_Content =(content)=>{
     const batch = db.batch();
     const userCollection = db.collection("Users");
     const {uid} =  getUid();
+    const time = getNowDate();
     const userRef = userCollection.doc(uid).collection("books").doc(content.isbn).set(content);
+    userCollection.doc(uid).collection("books").doc(content.isbn).update({addedDate:getNowDate()});
 }
 
 export const delete_Content=(content)=>{

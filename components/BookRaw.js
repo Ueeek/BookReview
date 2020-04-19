@@ -20,6 +20,7 @@ export function BookRaw({item,rank}){
                 <Body>
                     <Text>{item.title}</Text>
                     <Text note numberOfLines={1}>{item.author}</Text>
+                    <Text style={styles.rankText}>{item.reviewAverage}</Text>
                 </Body>
                 <Right>
                     <Text style={styles.rankText}>{rank}</Text>
