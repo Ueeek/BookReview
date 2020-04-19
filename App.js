@@ -7,6 +7,7 @@ import { Provider, connect } from 'react-redux';
 import store from './redux/store'
 import firebase from"firebase"
 import {firebaseConfig} from "./config/firebase"
+import * as Font from "expo-font"
 
 import AppNavigator from './navigation/AppNavigator';
 
@@ -40,6 +41,10 @@ export default function App(props) {
 }
 
 async function loadResourcesAsync() {
+  await Promise.all([
+    Font.loadAsync({
+    }),
+  ]);
 }
 
 function handleLoadingError(error) {

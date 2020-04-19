@@ -17,7 +17,6 @@ const initialState = {
 }
 
 export default function(state = initialState, action) {
-  console.log("action_rank->",action.type)
   switch (action.type) {
       case SIGNUP_SUCCESS:{
           return{
