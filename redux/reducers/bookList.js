@@ -1,5 +1,6 @@
 import { ADD_BOOKLIST,FETCH_BOOKLIST,FETCH_BOOKLIST_FAILURE,FETCH_BOOKLIST_SUCCESS,DELETE_BOOKLIST} from "../actionTypes";
 import {fetch_books,delete_Content,set_Content} from "../../firebase"
+import{Toast} from "native-base"
 
 const initialState = {
     bookList: [],
@@ -12,13 +13,21 @@ export default function(state = initialState, action) {
       const {content} = action.payload;
       console.log("add=>",content);
       set_Content(content);
-      alert("book:"+content.title+"is added to List!")
+      Toast.show({
+          text:"book"+content.title+"is added to List!",
+          type:"success",
+          position:"bottom"
+      });
         return{state}
     }
       case DELETE_BOOKLIST:{
           const {content} = action.payload;
           delete_Content(content);
-          alert("book:"+content.title+"is removed from List!")
+          Toast.show({
+            text:"book"+content.title+"is deleted from list",
+            type:"danger",
+            position:"bottom"
+          });
           return{state}
       }
     case FETCH_BOOKLIST:{

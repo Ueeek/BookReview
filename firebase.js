@@ -24,10 +24,6 @@ export const getUid = () =>{
     }
 }
 
-export const logout = () =>{
-    return firebase.auth().signOut();
-}
-
 export const db = firebaseApp.firestore();
 export const userCollection = db.collection("Users");
 

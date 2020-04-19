@@ -2,7 +2,7 @@ import { AppLoading } from 'expo';
 import{decode,encode} from "base-64"
 import React, { useState, useEffect } from 'react';
 import {Text, Platform, StatusBar, StyleSheet, View } from 'react-native';
-import {Container} from "native-base"
+import {Container,Root} from "native-base"
 import { Provider, connect } from 'react-redux';
 import store from './redux/store'
 import firebase from"firebase"
@@ -33,7 +33,9 @@ export default function App(props) {
       <Provider store={store}>
           <Container style={styles.container}>
             {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-            <AppNavigator />
+            <Root>
+                <AppNavigator />
+            </Root>
           </Container>
       </Provider>
     );
