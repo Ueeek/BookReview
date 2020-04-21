@@ -11,6 +11,7 @@ import {
 } from "../actionTypes"
 import firebase from "firebase"
 import {facebookConfig } from "../../config/facebook"
+//import{ GoogleSignin} from "react-native-google-signin"
 import * as Facebook from "expo-facebook"
 
 
@@ -68,26 +69,44 @@ export const login_mail = (email,password)=>{
 export const login_facebook = ()=>{
         return async(dispatch)=>{
         try{
-            const { type , token } = await Facebook.logInWithReadPermissionsAsync(facebookConfig["APP_ID"],{permissions:['public_profile']});
+            await Facebook.initializeAsync(facebookConfig["APP_ID"]) 
+            const { type , token } = await Facebook.logInWithReadPermissionsAsync({permissions:['public_profile']});
+            alert(type);
+            alert(token);
             if(type ==="success"){
                  await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);  // Set persistent auth state
                  const credential = firebase.auth.FacebookAuthProvider.credential(token);
                  const facebookProfileData = await firebase.auth().signInAndRetrieveDataWithCredential(credential);  // Sign in wit
-                 return dispatch(loginSuccess(token))
+                 return dispatch(loginSuccess())
             }
             else{
-                const credential = firebase.auth().FacebookAuthProvider.credential(token);
-                firebase.auth().signInWithCredential(credential).catch((error) => {
-                console.log(error)
-              })
+                alert(type);
             }
         }
         catch(err){
             console.log(err)
             alert(err)
+            return dispatch(loginFailure(err))
         }
     }
 }
+
+//export const login_google = ()=>{
+//    return async(dispatch)=>{
+//        GoogleSignin.signIn()
+//            .then((data)=>{
+//                const credential = firebase.auth.GoogleAuthProvider.credential(data.idToken, data.accessToken);
+//                return firebase.auth().signInWithCredential(credential);
+//            })
+//            .then((user)=>{
+//                return(dispatch(loginSuccess(user)));
+//            })
+//            .catch((err)=>{
+//                console.log(err);
+//                return dispatch(loginFailure(err))
+//            })
+//    }
+//}
 
 const loginSuccess = (values) => (
     {type: LOGIN_SUCCESS, payload: values }
