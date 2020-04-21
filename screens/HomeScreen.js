@@ -2,9 +2,15 @@ import React,{useState,useEffect} from 'react';
 import {
   Text,
     Spinner,
-    Picker,
     Icon,
+    Title,
     Container,
+    Header,
+    Left,
+    Right,
+    Body,
+    Button,
+    ActionSheet
 } from 'native-base';
 import {
   StyleSheet,
@@ -16,6 +22,7 @@ import Colors from "../constants/Colors"
 import { fetchRanking } from "../redux/actions/bookRanking";
 import{fetchBookList} from "../redux/actions/bookList";
 import { useDispatch, useSelector } from "react-redux";
+import {SortKey} from "../constants/BookRankingSortKey"
 
 
 const renderItem = ({ item, index }) => {
@@ -28,7 +35,7 @@ const keyExtractor = (item, index) => {return index};
 export default function HomeScreen() {
     const ranking=useSelector(state=>state["bookRanking"].rankingList)
     const dispatch =useDispatch();
-    const [genre,setGenre] = useState("001");
+    const [genre,setGenre] = useState(SortKey["ALL"][0]);
     const onValueChange=(val)=> {
         setGenre(val)
     };
@@ -46,29 +53,39 @@ export default function HomeScreen() {
         dispatch(fetchBookList());
     },[])
 
+    var ACTIONS=Object.values(SortKey).map(x=>x[0])
+    ACTIONS.push("cancel")
+    const STATES=Object.values(SortKey).map(x=>x[1])
+    const CANCELINDEX=ACTIONS.length-1
+    const handleOnPress = () =>{
+        ActionSheet.show(
+            {options: ACTIONS,
+            title: "how to sort?",
+            cancelButtonIndex:CANCELINDEX
+            },
+            buttonIndex => {
+                if(buttonIndex!=CANCELINDEX){
+                    setGenre(STATES[buttonIndex])
+                }
+              }
+            )}
     return(
         <Container style={styles.container}>
-        <Text>select Genre</Text>
-        <Picker
-              mode="dropdown"
-              iosHeader="Select genre"
-              iosIcon={<Icon type="FontAwesome" name="caret-down" style={{ color: "black", fontSize: 25 }} />}
-              style={{ width: undefined }}
-              selectedValue={genre}
-              onValueChange={onValueChange.bind(this)}
-            >
-              <Picker.Item label="All Book" value="001" />
-              <Picker.Item label="Comic" value="001001" />
-              <Picker.Item label="study" value="001002" />
-              <Picker.Item label="Novel" value="001004" />
-              <Picker.Item label="PC" value="001005" />
-              <Picker.Item label="beauty" value="001010" />
-            </Picker>
+            <Header>
+                <Left/>
+                <Body>
+                    <Title> Home</Title>
+                </Body>
+                <Right>
+                    <Button iconLeft transparent onPress={()=>handleOnPress()}>
+                        <Icon type="FontAwesome" name="sort-amount-asc" style={{ color: "black", fontSize: 25 }} />
+                    </Button >
+                </Right>
+             </Header>
         <Container>
         {ranking.length==0 ?
             (
                 <Container>
-                <Text>Loading</Text>
                 <Spinner color="black"/>
                 </Container>
             )

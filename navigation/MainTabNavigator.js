@@ -24,14 +24,12 @@ const BarcodeStack = createStackNavigator(
         navigationOptions: {
           title: 'Barcode',
           headerStyle: {
-            backgroundColor: Colors.navy,
-          },
-          headerTintColor: Colors.theme,
+              header:null,
         },
+    }
     }
   },
   config,
-
 );
 
 BarcodeStack.navigationOptions = {
@@ -48,9 +46,8 @@ const BookStack = createStackNavigator(
                     navigationOptions: {
           title: 'BookPage',
           headerStyle: {
-            backgroundColor: Colors.navy,
+              header:null,
           },
-          headerTintColor: Colors.theme,
         },
         }
     }, config
@@ -70,11 +67,7 @@ const BookListStack = createStackNavigator(
         BookList: {
             screen:BookListScreen,
             navigationOptions: {
-            title: 'BookList',
-          headerStyle: {
-            backgroundColor: Colors.navy,
-          },
-          headerTintColor: Colors.theme,
+                header:null,
         },
         }
     },
@@ -94,15 +87,9 @@ const HomeStack = createStackNavigator(
         HomeList: {
             screen:HomeScreen,
             navigationOptions: {
-            title: 'Home',
-          headerStyle: {
-            backgroundColor: Colors.navy,
-          },
-          headerTintColor: Colors.theme,
-        },
+                header:null
+            }
         }
-
-
     },
     config
 );
@@ -125,9 +112,8 @@ const SettingStack = createStackNavigator(
         navigationOptions: {
           title: 'Setting',
           headerStyle: {
-            backgroundColor: Colors.navy,
+              header:null,
           },
-          headerTintColor: Colors.theme,
         },
     }
   },

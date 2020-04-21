@@ -5,8 +5,14 @@ import {
   Container,
   Header,
   List,
+  Body,
+  Left,
+  Title,
+  Right,
+  Button,
   Picker,
   Icon,
+  ActionSheet,
 } from 'native-base';
 import {
   StyleSheet,
@@ -23,6 +29,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 import{fetchBookList} from "../redux/actions/bookList"
+import{SortKey} from "../constants/BookListSortKey"
 
 const renderItem = ({ item, index }) => {
     return (
@@ -66,23 +73,36 @@ export default function BookListScreen() {
             />
     }
 
+
+    const ACTIONS=["Recently Added","Sales Date","Review","Title","cancel"]
+    const STATES=[ADDED_DATE, SALES_DATE, REVIEW, TITLE]
+    const handleOnPress = () =>{
+        ActionSheet.show(
+            {options: ACTIONS,
+            title: "how to sort?",
+            cancelButtonIndex:ACTIONS.length-1,
+            },
+            buttonIndex => {
+                if(buttonIndex==ACTIONS.length-1){
+                    setSortKey(STATES[buttonIndex])
+                }
+              }
+            )}
+
     return(
         <Container style={styles.container}>
-                <Text>select sortKey</Text>
-                <Picker
-                      mode="dropdown"
-                      iosHeader="Sort by"
-                      iosIcon={<Icon type="FontAwesome" name="caret-down" style={{ color: "black", fontSize: 25 }} />}
-                      style={{ width: undefined }}
-                      selectedValue={sortKey}
-                      onValueChange={setSortKey.bind(this)}
-                    >
-                      <Picker.Item label="Recently Added" value={ADDED_DATE}/>
-                      <Picker.Item label="sales Date" value={SALES_DATE}/>
-                      <Picker.Item label="Review" value={REVIEW} />
-                      <Picker.Item label="Title" value={TITLE} />
-                    </Picker>
-                   {bookList.length==0 ? (<Text> please add book to this list</Text>) :  flatList()}
+            <Header>
+                <Left/>
+                <Body>
+                    <Title> BookList</Title>
+                </Body>
+                <Right>
+                    <Button iconLeft transparent onPress={()=>handleOnPress()}>
+                        <Icon type="FontAwesome" name="sort-amount-asc" style={{ color: "black", fontSize: 25 }} />
+                    </Button >
+                </Right>
+             </Header>
+             {bookList.length==0 ? (<Text> please add book to this list</Text>) :  flatList()}
         </Container>
     );
 }
