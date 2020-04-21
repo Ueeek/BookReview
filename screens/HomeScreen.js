@@ -4,16 +4,9 @@ import {
     Spinner,
     Picker,
     Icon,
-    Button,
     Container,
-    Radio,
-    Content,
-    Right,
-    Left,
-    ListItem
 } from 'native-base';
 import {
-    View,
   StyleSheet,
     FlatList,
 } from 'react-native';
@@ -24,9 +17,6 @@ import { fetchRanking } from "../redux/actions/bookRanking";
 import{fetchBookList} from "../redux/actions/bookList";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  useNavigationParam
-} from "react-navigation-hooks";
 
 const renderItem = ({ item, index }) => {
     return (

@@ -23,9 +23,6 @@ import useDimentions from "../hooks/useDimentions"
 import Colors from "../constants/Colors"
 
 function searchIsbn(list,isbn){
-    console.log("search");
-    console.log("list=>",list);
-
     const ret = list.some(value=>value.isbn==isbn)
     return ret;
 }
@@ -35,9 +32,7 @@ export default function BookScreen() {
   const dispatch =useDispatch();
   const BookListSelector = state => state.bookList;
   const bookList = useSelector(BookListSelector)["bookList"];
-    console.log("bookList=>",bookList);
   const windowSize = useDimentions("window");
-    console.log("item=>",item);
   if (item){  
       return (
         <Container style={styles.container}>

@@ -30,12 +30,10 @@ export const signup_mail = (email,password)=>{
         .then(user=>{
             if(user){
                 console.log("Success to singup")
-                console.log(user)
                 return dispatch(signUpSuccess(user))
             }
         })
         .catch(err=>{
-            console.log("err->",err)
             alert(err)
             return dispatch(signUpFailure(err))
         })
@@ -55,12 +53,10 @@ export const login_mail = (email,password)=>{
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then(user=>{
             if(user){
-                console.log("Success to login")
                 return dispatch(loginSuccess(user))
             }
         })
         .catch(err=>{
-            console.log("err->",err)
             alert("err"+err)
             return dispatch(loginFailure(err))
         })
@@ -83,7 +79,6 @@ export const login_facebook = ()=>{
             }
         }
         catch(err){
-            console.log(err)
             alert(err)
             return dispatch(loginFailure(err))
         }
@@ -119,11 +114,9 @@ export const logout = ()=>{
     return (dispatch)=>{
         firebase.auth().signOut()
          .then(res=>{
-             console.log("sucsess to logout")
              dispatch(logoutSuccess())
          })
         .catch(err=>{
-            console.log("err=>",err)
             alert(err)
              dispatch(logoutFailure(err))
         })

@@ -30,11 +30,9 @@ export const fetchBookList = () =>{
             querySnapshot.forEach((postDoc)=>{
                 ret.push(postDoc.data());
             });
-            console.log("ret_length=>",ret.length);
             return dispatch(fetchBookListSuccess(ret));
         }
         catch(err){
-            console.log("errr=>",err);
             return dispatch(fetchBookListFailure(err));
         }
     }

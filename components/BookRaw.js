@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import {TouchableOpacity,Alert, StyleSheet} from 'react-native';
-import {Image,Left,Body,Right, Text, View,Container,ListItem,Thumbnail, Button } from 'native-base';
+import {StyleSheet} from 'react-native';
+import {Left,Body,Right, Text, ListItem,Thumbnail} from 'native-base';
 import {
   useNavigation,
-  useNavigationKey,
-  useFocusState
 } from "react-navigation-hooks";
 import useDimentions from "../hooks/useDimentions"
 
 
 export function BookRaw({item,rank}){
-    const windowSize = useDimentions("window");
     const { navigate } = useNavigation();
     return(
          <ListItem onPress={()=>navigate("BookPage",{item:item})} style={styles.bookRaw}>
