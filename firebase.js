@@ -24,6 +24,7 @@ export const getUid = () =>{
     }
 }
 
+
 export const db = firebaseApp.firestore();
 export const userCollection = db.collection("Users");
 

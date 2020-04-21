@@ -17,6 +17,8 @@ import {
 } from "react-navigation-hooks";
 import { useDispatch, useSelector } from "react-redux";
 import {logout} from "../redux/actions/Login";
+
+import{auth} from "../firebase"
 import useDimentions from "../hooks/useDimentions"
 
 import Colors from "../constants/Colors"
@@ -24,17 +26,11 @@ import Colors from "../constants/Colors"
 export default function SettingScreen() {
     const dispatch = useDispatch();
     const {navigate} = useNavigation();
-    const user = useSelector(state=>state.Login)["user"]
-    useEffect(()=>{
-    },[user])
       return (
           <Container style={{justifyContent:"center"}}>
-          {user ? (
             <Button onPress={()=>dispatch(logout())}>
                 <Text>Logout</Text>
             </Button>
-          ): navigate("Loading")
-          }
           </Container>
       );
 }

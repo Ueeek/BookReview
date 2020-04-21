@@ -30,6 +30,7 @@ export const signup_mail = (email,password)=>{
         .then(user=>{
             if(user){
                 console.log("Success to singup")
+                console.log(user)
                 return dispatch(signUpSuccess(user))
             }
         })
@@ -71,13 +72,11 @@ export const login_facebook = ()=>{
         try{
             await Facebook.initializeAsync(facebookConfig["APP_ID"]) 
             const { type , token } = await Facebook.logInWithReadPermissionsAsync({permissions:['public_profile']});
-            alert(type);
-            alert(token);
             if(type ==="success"){
                  await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);  // Set persistent auth state
                  const credential = firebase.auth.FacebookAuthProvider.credential(token);
                  const facebookProfileData = await firebase.auth().signInAndRetrieveDataWithCredential(credential);  // Sign in wit
-                 return dispatch(loginSuccess())
+                 return dispatch(loginSuccess(token))
             }
             else{
                 alert(type);
