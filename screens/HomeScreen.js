@@ -98,7 +98,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.theme,
+    backgroundColor: Colors.theme2,
   },
 });
 

@@ -27,9 +27,9 @@ export default function SettingScreen() {
     const dispatch = useDispatch();
     const {navigate} = useNavigation();
       return (
-          <Container style={{justifyContent:"center"}}>
-            <Button onPress={()=>dispatch(logout())}>
-                <Text>Logout</Text>
+          <Container style={{justifyContent:"center",backgroundColor:Colors.theme2}}>
+            <Button transparent block bordered dark onPress={()=>dispatch(logout())} >
+                <Text style={{color:"black"}}>Logout</Text>
             </Button>
           </Container>
       );

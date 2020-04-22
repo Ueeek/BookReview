@@ -64,8 +64,13 @@ export default function BookListScreen() {
     const dispatch =useDispatch();
     useEffect(()=>{
         dispatch(fetchBookList());
-    }, [sortKey]);
+    }, [sortKey,bookList]);
     const flatList=()=>{
+        return <FlatList
+                data={bookList}
+                keyExtractor={keyExtractor}
+                renderItem={renderItem}
+            />
         return <FlatList
                 data={sortBooklist(bookList,sortKey)}
                 keyExtractor={keyExtractor}
@@ -92,7 +97,7 @@ export default function BookListScreen() {
     return(
         <Container style={styles.container}>
             <Header>
-                <Left/>
+            <Left/>
                 <Body>
                     <Title> BookList</Title>
                 </Body>
@@ -110,7 +115,6 @@ export default function BookListScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.theme,
+    backgroundColor: Colors.theme2,
   },
 });
-

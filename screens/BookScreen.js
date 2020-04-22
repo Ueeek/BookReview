@@ -1,9 +1,9 @@
-import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import {
   StyleSheet,
   Linking,
   Image,
+ScrollView,
 } from 'react-native';
 import {
   Content,
@@ -12,6 +12,7 @@ import {
   Button,
   Card,
   Icon,
+  Accordion,
 } from 'native-base';
 import {
   useNavigationParam
@@ -48,20 +49,20 @@ export default function BookScreen() {
                 <Text style={styles.authorText}>{item.reviewAverage} ({item.reviewCount} reviewers)</Text>
                 <Text style={styles.authorText}>Author: {item.author}</Text>
                 <Text style={styles.authorText}>publisher: {item.publisherName}</Text>
-            </Container> 
+            </Container>
           <Container style={styles.buttonContainer}>
               {searchIsbn(bookList,item.isbn) 
-                  ? (<Button block bordered iconLeft onPress={()=>{dispatch(deleteBook(item));dispatch(fetchBookList())}}>
-                     <Icon type={"MaterialCommunityIcons"} name={"playlist-remove"} style={{color: Colors.blue, fontSize: 20}} />
+                  ? (<Button block bordered iconLeft dark onPress={()=>{dispatch(deleteBook(item));dispatch(fetchBookList())}}>
+                     <Icon type={"MaterialCommunityIcons"} name={"playlist-remove"} style={{color: "black", fontSize: 20}} />
                       <Text>delete</Text>
                       </Button>)
-                  : (<Button block bordered iconLeft onPress={()=>{dispatch(addBook(item));dispatch(fetchBookList())}}>
-                        <Icon type={"MaterialCommunityIcons"} name={"playlist-plus"} style={{color: Colors.blue, fontSize: 20}} />
+                  : (<Button block bordered iconLeft dark onPress={()=>{dispatch(addBook(item));dispatch(fetchBookList())}}>
+                        <Icon type={"MaterialCommunityIcons"} name={"playlist-plus"} style={{color: "black", fontSize: 20}} />
                         <Text>add</Text>
                     </Button>)}
               
-              <Button  block bordered  iconLeft onPress={()=>{Linking.openURL((item.affiliateUrl))}}>
-                <Icon type={"Feather"} name={"shopping-cart"} style={{color: Colors.blue, fontSize: 20}} />
+              <Button  block bordered  iconLeft dark onPress={()=>{Linking.openURL((item.affiliateUrl))}} style={{marginTop:10}}>
+                <Icon type={"Feather"} name={"shopping-cart"} style={{color: "black", fontSize: 20}} />
                 <Text>Open In rakuten </Text>
               </Button>
           </Container>
@@ -79,11 +80,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+    backgroundColor: Colors.theme2,
   },
     bookContainer:{
       flex:1,
       backgroundColor:"#ddd",
       backgroundColor:"#FFF",
+      paddingTop:20,
+    backgroundColor: Colors.theme2,
   },
   image:(w)=>({
       width:w*0.8,
@@ -93,6 +97,7 @@ const styles = StyleSheet.create({
       flex:1,
       paddingRight:5,
       paddingLeft:5,
+    backgroundColor: Colors.theme2,
   },
 
   authorText:{

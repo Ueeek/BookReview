@@ -57,11 +57,11 @@ export default function SignUpScreen() {
             </Container>
           {user===null ?(
             <Container style={{justifyContent:"center"}}>
-            <Button iconLeft bordered onPress={()=>dispatch(signup_mail(name,pass))}>
+            <Button iconLeft bordered dark onPress={()=>dispatch(signup_mail(name,pass))}>
 				<Icon type={"FontAwesome5"} name={"envelope"} style={{color: "black", fontSize: 20}} />
                 <Text>signup</Text>
             </Button>
-            <Button iconLeft bordered onPress={()=>navigate("Login")}>
+            <Button iconLeft bordered dark onPress={()=>navigate("Login")} style={{marginTop:10}}>
 				<Icon type={"FontAwesome5"} name={"envelope"} style={{color: "black", fontSize: 20}} />
                 <Text>go back</Text>
             </Button>
