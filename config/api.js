@@ -1,5 +1,0 @@
-export const apiConfig = {
-    RAKUTEN_API_ID:"1096570044356823244",
-    AFFILIATEID:"1a60e3f2.f81ff988.1a60e3f3.4198a384",
-    ALL_GENRE_ID:"200162",
-};
