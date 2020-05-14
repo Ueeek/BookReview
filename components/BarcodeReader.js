@@ -67,11 +67,6 @@ export function MyBarcodeReader(){
   }
 
     return(
-        <Button onPress={handleBarCodeScanned}>
-            <Text>Press</Text>
-        </Button>
-    )
-    return(
         <Container style={styles.container}>
             <BarCodeScanner
                   barCodeTypes={[BarCodeScanner.Constants.BarCodeType.ean13]}
