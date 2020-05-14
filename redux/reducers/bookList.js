@@ -11,7 +11,6 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case ADD_BOOKLIST: {
       const {content} = action.payload;
-      console.log("add=>",content);
       set_Content(content);
       Toast.show({
           text:"book"+content.title+"is added to List!",
@@ -35,16 +34,12 @@ export default function(state = initialState, action) {
     }
     case FETCH_BOOKLIST_SUCCESS:{
         const data = action.payload;
-        console.log("FETCHBOOKLISTSUCCESS")
-        console.log("data=>",data.length);
-        console.log("data=>",data);
         return{
             ...state,
             bookList:data
         }
     }
     case FETCH_BOOKLIST_FAILURE:{
-        console.log("FETCHBOOKLISTFAILURE")
         console.log(action.payload);
         const {err} = action.payload;
         return{

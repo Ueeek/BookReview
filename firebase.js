@@ -24,6 +24,7 @@ export const getUid = () =>{
     }
 }
 
+
 export const db = firebaseApp.firestore();
 export const userCollection = db.collection("Users");
 
@@ -55,7 +56,7 @@ export const set_Content =(content)=>{
     const {uid} =  getUid();
     const time = getNowDate();
     const userRef = userCollection.doc(uid).collection("books").doc(content.isbn).set(content);
-    userCollection.doc(uid).collection("books").doc(content.isbn).update({addedDate:getNowDate()});
+    return userCollection.doc(uid).collection("books").doc(content.isbn).update({addedDate:getNowDate()});
 }
 
 export const delete_Content=(content)=>{

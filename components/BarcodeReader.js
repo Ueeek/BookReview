@@ -24,12 +24,10 @@ export function MyBarcodeReader(){
   }, []);
 
  async function bookAPI(isbn) {
-     console.log("isbn"+isbn)
      const id = apiConfig.RAKUTEN_API_ID
      const affiliateId=apiConfig.AFFILIATEID
      const url=`https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?format=json&keyword=%E6%9C%AC&booksGenreId=000&isbnjan=${isbn}&applicationId=${id}&affiliateId=${affiliateId}`
      axios.get(url)
-       
         .then((res)=>{
             const item = res.data.Items[0].Item
             if (typeof item==="undefined"){
