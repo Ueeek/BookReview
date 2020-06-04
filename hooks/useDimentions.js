@@ -1,11 +1,14 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
-import { Dimensions } from 'react-native';
+import React, { useEffect, useState } from "react";
+import { Dimensions } from "react-native";
 
-const enums = ['window', 'screen'];
+const enums = ["window", "screen"];
 
 const initialDimensions = {
-  fontScale: null, height: null, width: null, scale: null,
+  fontScale: null,
+  height: null,
+  width: null,
+  scale: null,
 };
 
 export default (type) => {
@@ -25,9 +28,9 @@ export default (type) => {
       setDimensions(params[type]);
     }
 
-    Dimensions.addEventListener('change', dimensionsChange);
+    Dimensions.addEventListener("change", dimensionsChange);
     return () => {
-      Dimensions.removeEventListener('change', dimensionsChange);
+      Dimensions.removeEventListener("change", dimensionsChange);
     };
   }, [type]);
 

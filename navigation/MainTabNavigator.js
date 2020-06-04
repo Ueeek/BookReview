@@ -1,8 +1,8 @@
-import React from 'react';
-import { Platform} from 'react-native';
-import { createStackNavigator } from 'react-navigation-stack';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
-import {Icon } from 'native-base';
+import React from "react";
+import { Platform } from "react-native";
+import { createStackNavigator } from "react-navigation-stack";
+import { createBottomTabNavigator } from "react-navigation-tabs";
+import { Icon } from "native-base";
 
 import BarcodeScreen from "../screens/BarcodeScreen";
 import BookScreen from "../screens/BookScreen";
@@ -13,122 +13,140 @@ import SettingScreen from "../screens/SettingScreen";
 import Colors from "../constants/Colors";
 
 const config = Platform.select({
-    web: { headerMode: 'screen'},
-    default: {headerMode:"screen"},
+  web: { headerMode: "screen" },
+  default: { headerMode: "screen" },
 });
 
 const BarcodeStack = createStackNavigator(
   {
-    Barcode:{
-        screen:BarcodeScreen,
-        navigationOptions: {
-          title: 'Barcode',
-          headerStyle: {
-              header:null,
+    Barcode: {
+      screen: BarcodeScreen,
+      navigationOptions: {
+        title: "Barcode",
+        headerStyle: {
+          header: null,
         },
-    }
-    }
+      },
+    },
   },
-  config,
+  config
 );
 
 BarcodeStack.navigationOptions = {
-  tabBarLabel: 'Barcode',
+  tabBarLabel: "Barcode",
   tabBarIcon: ({ focused }) => (
-				<Icon type={"FontAwesome5"} name={"barcode"} style={{color: "black", fontSize: 20}} />
+    <Icon
+      type={"FontAwesome5"}
+      name={"barcode"}
+      style={{ color: "black", fontSize: 20 }}
+    />
   ),
 };
 
 const BookStack = createStackNavigator(
-    {
-        BookPage:{
-            screen:BookScreen,
-                    navigationOptions: {
-          title: 'BookPage',
-          headerStyle: {
-              header:null,
-          },
+  {
+    BookPage: {
+      screen: BookScreen,
+      navigationOptions: {
+        title: "BookPage",
+        headerStyle: {
+          header: null,
         },
-        }
-    }, config
+      },
+    },
+  },
+  config
 );
 
 BookStack.navigationOptions = {
-    title:"tab1",
-    taat:"agah",
-  tabBarLabel: 'Book',
+  title: "tab1",
+  taat: "agah",
+  tabBarLabel: "Book",
   tabBarIcon: ({ focused }) => (
-				<Icon type={"FontAwesome5"} name={"book"} style={{color: "black", fontSize: 20}} />
+    <Icon
+      type={"FontAwesome5"}
+      name={"book"}
+      style={{ color: "black", fontSize: 20 }}
+    />
   ),
   title: "barcode",
 };
 const BookListStack = createStackNavigator(
-    {
-        BookList: {
-            screen:BookListScreen,
-            navigationOptions: {
-                header:null,
-        },
-        }
+  {
+    BookList: {
+      screen: BookListScreen,
+      navigationOptions: {
+        header: null,
+      },
     },
-    config
+  },
+  config
 );
 
 BookListStack.navigationOptions = {
-    title:"tab1",
-  tabBarLabel: 'BookList',
+  title: "tab1",
+  tabBarLabel: "BookList",
   tabBarIcon: ({ focused }) => (
-				<Icon type={"FontAwesome5"} name={"list"} style={{color: "black", fontSize: 20}} />
+    <Icon
+      type={"FontAwesome5"}
+      name={"list"}
+      style={{ color: "black", fontSize: 20 }}
+    />
   ),
 };
 
 const HomeStack = createStackNavigator(
-    {
-        HomeList: {
-            screen:HomeScreen,
-            navigationOptions: {
-                header:null
-            }
-        }
+  {
+    HomeList: {
+      screen: HomeScreen,
+      navigationOptions: {
+        header: null,
+      },
     },
-    config
+  },
+  config
 );
 
-HomeStack.path = '';
+HomeStack.path = "";
 HomeStack.navigationOptions = {
-    title:"tab1",
-  tabBarLabel: 'Home',
+  title: "tab1",
+  tabBarLabel: "Home",
   tabBarIcon: ({ focused }) => (
-				<Icon type={"FontAwesome5"} name={"home"} style={{color: "black", fontSize: 20}} />
+    <Icon
+      type={"FontAwesome5"}
+      name={"home"}
+      style={{ color: "black", fontSize: 20 }}
+    />
   ),
 };
 
-
-HomeStack.path = '';
+HomeStack.path = "";
 const SettingStack = createStackNavigator(
   {
-    Setting:{
-        screen:SettingScreen,
-        navigationOptions: {
-          title: 'Setting',
-          headerStyle: {
-              header:null,
-          },
+    Setting: {
+      screen: SettingScreen,
+      navigationOptions: {
+        title: "Setting",
+        headerStyle: {
+          header: null,
         },
-    }
+      },
+    },
   },
-  config,
+  config
 );
 
 SettingStack.navigationOptions = {
-  tabBarLabel: 'Setting',
+  tabBarLabel: "Setting",
   tabBarIcon: ({ focused }) => (
-				<Icon type={"FontAwesome5"} name={"cog"} style={{color: "black", fontSize: 20}} />
+    <Icon
+      type={"FontAwesome5"}
+      name={"cog"}
+      style={{ color: "black", fontSize: 20 }}
+    />
   ),
 };
-SettingStack.path = '';
-
-
+SettingStack.path = "";
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
@@ -138,6 +156,6 @@ const tabNavigator = createBottomTabNavigator({
   SettingStack,
 });
 
-tabNavigator.path = '';
+tabNavigator.path = "";
 
 export default tabNavigator;

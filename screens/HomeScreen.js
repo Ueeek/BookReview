@@ -1,98 +1,102 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Text,
-    Spinner,
-    Icon,
-    Title,
-    Container,
-    Header,
-    Left,
-    Right,
-    Body,
-    Button,
-    ActionSheet
-} from 'native-base';
-import {
-  StyleSheet,
-    FlatList,
-} from 'react-native';
+  Spinner,
+  Icon,
+  Title,
+  Container,
+  Header,
+  Left,
+  Right,
+  Body,
+  Button,
+  ActionSheet,
+} from "native-base";
+import { StyleSheet, FlatList } from "react-native";
 
-import {BookRaw} from "../components/BookRaw"
-import Colors from "../constants/Colors"
+import { BookRaw } from "../components/BookRaw";
+import Colors from "../constants/Colors";
 import { fetchRanking } from "../redux/actions/bookRanking";
-import{fetchBookList} from "../redux/actions/bookList";
+import { fetchBookList } from "../redux/actions/bookList";
 import { useDispatch, useSelector } from "react-redux";
-import {SortKey} from "../constants/BookRankingSortKey"
-
+import { SortKey } from "../constants/BookRankingSortKey";
 
 const renderItem = ({ item, index }) => {
-    return (
-        <BookRaw item={item.Item} rank={index+1}/>
-    );
-  };
-const keyExtractor = (item, index) => {return index};
+  return <BookRaw item={item.Item} rank={index + 1} />;
+};
+const keyExtractor = (item, index) => {
+  return index;
+};
 
 export default function HomeScreen() {
-    const ranking=useSelector(state=>state["bookRanking"].rankingList)
-    const dispatch =useDispatch();
-    const [genre,setGenre] = useState(SortKey["ALL"][0]);
-    const onValueChange=(val)=> {
-        setGenre(val)
-    };
-    const flatList=()=>{
-        return <FlatList
-                data={ranking}
-                keyExtractor={keyExtractor}
-                renderItem={renderItem}
-            />
-    }
-    useEffect(() => {
-        dispatch(fetchRanking(genre))
-    },[genre]) 
-    useEffect(()=>{
-        dispatch(fetchBookList());
-    },[])
-
-    var ACTIONS=Object.values(SortKey).map(x=>x[0])
-    ACTIONS.push("cancel")
-    const STATES=Object.values(SortKey).map(x=>x[1])
-    const CANCELINDEX=ACTIONS.length-1
-    const handleOnPress = () =>{
-        ActionSheet.show(
-            {options: ACTIONS,
-            title: "how to sort?",
-            cancelButtonIndex:CANCELINDEX
-            },
-            buttonIndex => {
-                if(buttonIndex!=CANCELINDEX){
-                    setGenre(STATES[buttonIndex])
-                }
-              }
-            )}
-    return(
-        <Container style={styles.container}>
-            <Header>
-                <Left/>
-                <Body>
-                    <Title> Home</Title>
-                </Body>
-                <Right>
-                    <Button iconLeft transparent onPress={()=>handleOnPress()}>
-                        <Icon type="FontAwesome" name="sort-amount-asc" style={{ color: "black", fontSize: 25 }} />
-                    </Button >
-                </Right>
-             </Header>
-        <Container>
-        {ranking.length==0 ?
-            (
-                <Container>
-                <Spinner color="black"/>
-                </Container>
-            )
-            :flatList()}
-        </Container>
-        </Container>
+  const ranking = useSelector((state) => state["bookRanking"].rankingList);
+  const dispatch = useDispatch();
+  const [genre, setGenre] = useState(SortKey["ALL"][0]);
+  const onValueChange = (val) => {
+    setGenre(val);
+  };
+  const flatList = () => {
+    return (
+      <FlatList
+        data={ranking}
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
+      />
     );
+  };
+  useEffect(() => {
+    dispatch(fetchRanking(genre));
+  }, [genre]);
+  useEffect(() => {
+    dispatch(fetchBookList());
+  }, []);
+
+  var ACTIONS = Object.values(SortKey).map((x) => x[0]);
+  ACTIONS.push("cancel");
+  const STATES = Object.values(SortKey).map((x) => x[1]);
+  const CANCELINDEX = ACTIONS.length - 1;
+  const handleOnPress = () => {
+    ActionSheet.show(
+      {
+        options: ACTIONS,
+        title: "how to sort?",
+        cancelButtonIndex: CANCELINDEX,
+      },
+      (buttonIndex) => {
+        if (buttonIndex != CANCELINDEX) {
+          setGenre(STATES[buttonIndex]);
+        }
+      }
+    );
+  };
+  return (
+    <Container style={styles.container}>
+      <Header>
+        <Left />
+        <Body>
+          <Title> Home</Title>
+        </Body>
+        <Right>
+          <Button iconLeft transparent onPress={() => handleOnPress()}>
+            <Icon
+              type="FontAwesome"
+              name="sort-amount-asc"
+              style={{ color: "black", fontSize: 25 }}
+            />
+          </Button>
+        </Right>
+      </Header>
+      <Container>
+        {ranking.length == 0 ? (
+          <Container>
+            <Spinner color="black" />
+          </Container>
+        ) : (
+          flatList()
+        )}
+      </Container>
+    </Container>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -101,4 +105,3 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.theme2,
   },
 });
-
