@@ -10,6 +10,7 @@ import {
   Container,
   Button,
   Icon,
+    Fonts,
 } from 'native-base';
 import {
     useNavigation,
