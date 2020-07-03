@@ -36,7 +36,8 @@
 * isbnをもとにrakuten books apiからfetchした本の情報を表示する.
 * addを押すとbook listに追加できる
 * open rakuten を押すと、楽天ブックスのサイトに移動でき、webサイトから本を購入することができる。
-![iOS の画像 (2)](https://user-images.githubusercontent.com/43738558/81901640-cc960300-95f9-11ea-92bd-7c45215f95c0.png)
+![IMG_2882](https://user-images.githubusercontent.com/43738558/86473426-d3303380-bd7b-11ea-9fea-d60efeb87aaf.PNG)
+
 
 ### isbnコードの読み取り
 * isbnコードをカメラで読み取る。
