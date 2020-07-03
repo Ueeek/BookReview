@@ -30,7 +30,7 @@
 ### book list の画面
 * お気に入りの本を記録しておけるリストの画面
 * 本をクリックすると本の詳細画面に遷移する。
-![iOS の画像 (1)](https://user-images.githubusercontent.com/43738558/81901638-cb64d600-95f9-11ea-905f-a3040d9aa759.png)
+
 
 ### 本の詳細ページ
 * isbnをもとにrakuten books apiからfetchした本の情報を表示する.
