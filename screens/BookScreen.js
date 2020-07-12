@@ -9,11 +9,7 @@ import {
   Icon,
   Accordion,
 } from "native-base";
-<<<<<<< HEAD
 import {useNavigation, useNavigationParam } from "react-navigation-hooks";
-=======
-import { useNavigationParam } from "react-navigation-hooks";
->>>>>>> ed95f8bd3f5f69039d424003416214dd19031959
 import { useDispatch, useSelector } from "react-redux";
 import { addBook, deleteBook, fetchBookList } from "../redux/actions/bookList";
 import useDimentions from "../hooks/useDimentions";
@@ -60,10 +56,7 @@ export default function BookScreen() {
               onPress={() => {
                 dispatch(deleteBook(item));
                 dispatch(fetchBookList());
-<<<<<<< HEAD
                 navigate("BookList");
-=======
->>>>>>> ed95f8bd3f5f69039d424003416214dd19031959
               }}
             >
               <Icon
@@ -82,10 +75,7 @@ export default function BookScreen() {
               onPress={() => {
                 dispatch(addBook(item));
                 dispatch(fetchBookList());
-<<<<<<< HEAD
                 navigate("BookList");
-=======
->>>>>>> ed95f8bd3f5f69039d424003416214dd19031959
               }}
             >
               <Icon
@@ -131,10 +121,6 @@ const styles = StyleSheet.create({
   bookContainer: {
     flex: 1,
     backgroundColor: "#ddd",
-<<<<<<< HEAD
-=======
-    backgroundColor: "#FFF",
->>>>>>> ed95f8bd3f5f69039d424003416214dd19031959
     paddingTop: 20,
     backgroundColor: Colors.theme2,
   },
@@ -162,9 +148,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-<<<<<<< HEAD
     backgroundColor: Colors.theme2,
-=======
->>>>>>> ed95f8bd3f5f69039d424003416214dd19031959
   },
 });

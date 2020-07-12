@@ -1,15 +1,9 @@
 import React from "react";
 import { Platform } from "react-native";
-<<<<<<< HEAD
 import { createStackNavigator, HeaderBackButton } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { useNavigation, useNavigationParam } from "react-navigation-hooks";
 import { Button, Icon } from "native-base";
-=======
-import { createStackNavigator } from "react-navigation-stack";
-import { createBottomTabNavigator } from "react-navigation-tabs";
-import { Icon } from "native-base";
->>>>>>> ed95f8bd3f5f69039d424003416214dd19031959
 
 import BarcodeScreen from "../screens/BarcodeScreen";
 import BookScreen from "../screens/BookScreen";
@@ -55,7 +49,6 @@ const BookStack = createStackNavigator(
   {
     BookPage: {
       screen: BookScreen,
-<<<<<<< HEAD
       navigationOptions: ({ navigation }) => {
         return {
           title: "BookPages",
@@ -71,13 +64,6 @@ const BookStack = createStackNavigator(
             />
           ),
         };
-=======
-      navigationOptions: {
-        title: "BookPage",
-        headerStyle: {
-          header: null,
-        },
->>>>>>> ed95f8bd3f5f69039d424003416214dd19031959
       },
     },
   },

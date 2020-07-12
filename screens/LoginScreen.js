@@ -11,7 +11,6 @@ import {
   Fonts,
 } from "native-base";
 import { useNavigation } from "react-navigation-hooks";
-import { useNavigation } from "react-navigation-hooks";
 import { useDispatch, useSelector } from "react-redux";
 import {
   change_name,
