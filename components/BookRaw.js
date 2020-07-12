@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { Left, Body, Right, Text, ListItem, Thumbnail } from "native-base";
 import { useNavigation } from "react-navigation-hooks";
-import useDimentions from "../hooks/useDimentions";
 
 export function BookRaw({ item, rank }) {
   const { navigate } = useNavigation();

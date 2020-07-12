@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-  Text,
   Spinner,
   Icon,
   Title,
@@ -25,29 +24,22 @@ const renderItem = ({ item, index }) => {
   return <BookRaw item={item.Item} rank={index + 1} />;
 };
 const keyExtractor = (item, index) => {
-  return index;
+  return index.toString();
 };
 
 export default function HomeScreen() {
   const ranking = useSelector((state) => state["bookRanking"].rankingList);
   const dispatch = useDispatch();
   const [genre, setGenre] = useState(SortKey["ALL"][0]);
-  const onValueChange = (val) => {
-    setGenre(val);
-  };
-  const flatList = () => {
-    return (
-      <FlatList
-        data={ranking}
-        keyExtractor={keyExtractor}
-        renderItem={renderItem}
-      />
-    );
-  };
+
+
   useEffect(() => {
     dispatch(fetchRanking(genre));
+    dispatch(fetchBookList());
   }, [genre]);
+
   useEffect(() => {
+    dispatch(fetchRanking(genre));
     dispatch(fetchBookList());
   }, []);
 
@@ -69,6 +61,17 @@ export default function HomeScreen() {
       }
     );
   };
+
+  const flatList = () => {
+    return (
+      <FlatList
+        data={ranking}
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
+      />
+    );
+  };
+
   return (
     <Container style={styles.container}>
       <Header>

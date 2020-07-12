@@ -61,7 +61,8 @@ export function MyBarcodeReader() {
   }
 
   const handleBarCodeScanned = ({ val, data }) => {
-    const isbn = data === undefined ? "9784167110116" : data;
+    //const isbn = data === undefined ? "9784167110116" : data;
+    const isbn=data;
     setScanned(true);
     bookAPI(isbn);
   };
