@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@expo/samples": "~36.0.0",
-    "@expo/vector-icons": "~10.0.0",
+    "@expo/vector-icons": "^10.0.6",
     "@react-navigation/web": "~1.0.0-alpha.9",
     "axios": "^0.19.2",
     "base-64": "^0.1.0",
@@ -27,7 +27,7 @@
     "expo-web-browser": "~8.0.0",
     "firebase": "^7.9.3",
     "ionicons": "^5.0.1",
-    "native-base": "^2.13.8",
+    "native-base": "2.13.8",
     "prettier-eslint": "^9.0.1",
     "prettier-eslint-cli": "^5.0.0",
     "react": "~16.9.0",
