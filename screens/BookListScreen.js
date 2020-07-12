@@ -4,13 +4,11 @@ import {
   Text,
   Container,
   Header,
-  List,
   Body,
   Left,
   Title,
   Right,
   Button,
-  Picker,
   Icon,
   ActionSheet,
 } from "native-base";
@@ -25,36 +23,36 @@ import {
   REVIEW,
 } from "../constants/BookListSortKey";
 
-import { useNavigationParam } from "react-navigation-hooks";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchBookList } from "../redux/actions/bookList";
-import { SortKey } from "../constants/BookListSortKey";
 
-const renderItem = ({ item, index }) => {
+const renderItem = ({ item, _ }) => {
   return <BookRaw item={item} />;
 };
-const keyExtractor = (item, index) => {
-  return index;
+const keyExtractor = (_, index) => {
+  return index.toString();
 };
 
 const sortBooklist = (data, key) => {
+  console.log("sort called", key);
   switch (key) {
     case ADDED_DATE:
-      data.sort((a, b) => b[key].toMillis() - a[key].toMillis());
-      return data;
+      return data.slice().sort((a, b) => b[key].toMillis() - a[key].toMillis());
     case SALES_DATE:
-      data.sort((a, b) => a[key].localeCompare(b[key]));
-      return data;
+      return data.slice().sort((a, b) => a[key].localeCompare(b[key]));
     case REVIEW:
-      data.sort((a, b) => parseFloat(b[key]) - parseFloat(a[key]));
-      return data;
+      return data
+        .slice()
+        .sort((a, b) => parseFloat(b[key]) - parseFloat(a[key]));
     case TITLE:
-      data.sort((a, b) =>
-        a[key].toUpperCase().localeCompare(b[key].toUpperCase())
-      );
-      return data;
+      return data
+        .slice()
+        .sort((a, b) =>
+          a[key].toUpperCase().localeCompare(b[key].toUpperCase())
+        );
     default:
+      console.log("default");
       return data;
   }
 };
@@ -64,17 +62,12 @@ export default function BookListScreen() {
   const [sortKey, setSortKey] = useState(ADDED_DATE);
   let bookList = useSelector(BookListSelector)["bookList"];
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchBookList());
-  }, [sortKey, bookList]);
+  }, []);
+
   const flatList = () => {
-    return (
-      <FlatList
-        data={bookList}
-        keyExtractor={keyExtractor}
-        renderItem={renderItem}
-      />
-    );
     return (
       <FlatList
         data={sortBooklist(bookList, sortKey)}
@@ -94,7 +87,8 @@ export default function BookListScreen() {
         cancelButtonIndex: ACTIONS.length - 1,
       },
       (buttonIndex) => {
-        if (buttonIndex == ACTIONS.length - 1) {
+        if (buttonIndex != ACTIONS.length - 1) {
+          console.log("set key");
           setSortKey(STATES[buttonIndex]);
         }
       }

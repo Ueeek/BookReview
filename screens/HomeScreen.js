@@ -30,18 +30,13 @@ const keyExtractor = (item, index) => {
 export default function HomeScreen() {
   const ranking = useSelector((state) => state["bookRanking"].rankingList);
   const dispatch = useDispatch();
-  const [genre, setGenre] = useState(SortKey["ALL"][0]);
+  const [genre, setGenre] = useState(SortKey["ALL"][1]);
 
 
   useEffect(() => {
     dispatch(fetchRanking(genre));
-    dispatch(fetchBookList());
   }, [genre]);
 
-  useEffect(() => {
-    dispatch(fetchRanking(genre));
-    dispatch(fetchBookList());
-  }, []);
 
   var ACTIONS = Object.values(SortKey).map((x) => x[0]);
   ACTIONS.push("cancel");

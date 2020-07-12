@@ -11,7 +11,7 @@ import { Toast } from "native-base";
 const initialState = {
   bookList: [],
   loading: false,
-  error: "",
+  error: "", 
 };
 export default function(state = initialState, action) {
   switch (action.type) {

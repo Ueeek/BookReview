@@ -50,3 +50,8 @@ const fetchBookListFailure = (err) => ({
   type: FETCH_BOOKLIST_FAILURE,
   payload: err,
 });
+
+export const sortList = (sortKey) => ({
+  type: SORT_LIST,
+  sortKey,
+});
