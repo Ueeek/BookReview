@@ -16,7 +16,6 @@ import { StyleSheet, FlatList } from "react-native";
 import { BookRaw } from "../components/BookRaw";
 import Colors from "../constants/Colors";
 import { fetchRanking } from "../redux/actions/bookRanking";
-import { fetchBookList } from "../redux/actions/bookList";
 import { useDispatch, useSelector } from "react-redux";
 import { SortKey } from "../constants/BookRankingSortKey";
 

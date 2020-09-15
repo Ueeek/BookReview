@@ -1,4 +1,3 @@
-import * as WebBrowser from "expo-web-browser";
 import React, { useState, useEffect } from "react";
 import {
   Text,

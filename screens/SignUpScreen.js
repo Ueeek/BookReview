@@ -1,16 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet } from "react-native";
+import React, { useEffect } from "react";
 import { Form, Input, Item, Text, Container, Button, Icon } from "native-base";
 import { useNavigation } from "react-navigation-hooks";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  change_name,
-  change_pass,
-  login_mail,
-  signup_mail,
-  logout,
-} from "../redux/actions/Login";
-import Colors from "../constants/Colors";
+import { change_name, change_pass, signup_mail } from "../redux/actions/Login";
 
 export default function SignUpScreen() {
   const dispatch = useDispatch();

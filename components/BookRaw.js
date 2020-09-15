@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { StyleSheet } from "react-native";
 import { Left, Body, Right, Text, ListItem, Thumbnail } from "native-base";
 import { useNavigation } from "react-navigation-hooks";

@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Container, Text, View, Button } from "native-base";
+import { Container, Text, Button } from "native-base";
 import { Alert, StyleSheet } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import axios from "axios";
 import { useNavigation } from "react-navigation-hooks";
-
 import useDimentions from "../hooks/useDimentions";
-
 import { apiConfig } from "../config/api";
 
 export function MyBarcodeReader() {
@@ -61,8 +59,7 @@ export function MyBarcodeReader() {
   }
 
   const handleBarCodeScanned = ({ val, data }) => {
-    //const isbn = data === undefined ? "9784167110116" : data;
-    const isbn=data;
+    const isbn = data;
     setScanned(true);
     bookAPI(isbn);
   };

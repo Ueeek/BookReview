@@ -5,13 +5,13 @@ import {
   FETCH_BOOKLIST_SUCCESS,
   DELETE_BOOKLIST,
 } from "../actionTypes";
-import { fetch_books, delete_Content, set_Content } from "../../firebase";
+import { delete_Content, set_Content } from "../../firebase";
 import { Toast } from "native-base";
 
 const initialState = {
   bookList: [],
   loading: false,
-  error: "", 
+  error: "",
 };
 export default function(state = initialState, action) {
   switch (action.type) {

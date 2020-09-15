@@ -13,7 +13,7 @@ const fetchRankingRequest = () => {
   };
 };
 export const fetchRanking = (genre) => {
-    console.log("fetch ranikng",genre)
+  console.log("fetch ranikng", genre);
   const id = apiConfig.RAKUTEN_API_ID;
   const affiliateId = apiConfig.AFFILIATEID;
   const url = `https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?format=json&booksGenreId=${genre}&applicationId=${id}&affiliateId=${affiliateId}`;

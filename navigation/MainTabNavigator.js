@@ -2,8 +2,7 @@ import React from "react";
 import { Platform } from "react-native";
 import { createStackNavigator, HeaderBackButton } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
-import { useNavigation, useNavigationParam } from "react-navigation-hooks";
-import { Button, Icon } from "native-base";
+import { Icon } from "native-base";
 
 import BarcodeScreen from "../screens/BarcodeScreen";
 import BookScreen from "../screens/BookScreen";
@@ -11,7 +10,6 @@ import BookListScreen from "../screens/BookListScreen";
 import HomeScreen from "../screens/HomeScreen";
 import SettingScreen from "../screens/SettingScreen";
 
-import Colors from "../constants/Colors";
 import { NavigationActions } from "react-navigation";
 
 const config = Platform.select({

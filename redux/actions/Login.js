@@ -2,7 +2,6 @@ import {
   SIGNUP_SUCCESS,
   SIGNUP_FAILURE,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE,
   LOGOUT_SUCCESS,
   LOGOUT_FAILURE,
   CHANGE_NAME,
@@ -10,7 +9,6 @@ import {
 } from "../actionTypes";
 import firebase from "firebase";
 import { facebookConfig } from "../../config/facebook";
-//import{ GoogleSignin} from "react-native-google-signin"
 import * as Facebook from "expo-facebook";
 
 export const change_name = (name) => ({
@@ -89,22 +87,6 @@ export const login_facebook = () => {
   };
 };
 
-//export const login_google = ()=>{
-//    return async(dispatch)=>{
-//        GoogleSignin.signIn()
-//            .then((data)=>{
-//                const credential = firebase.auth.GoogleAuthProvider.credential(data.idToken, data.accessToken);
-//                return firebase.auth().signInWithCredential(credential);
-//            })
-//            .then((user)=>{
-//                return(dispatch(loginSuccess(user)));
-//            })
-//            .catch((err)=>{
-//                console.log(err);
-//                return dispatch(loginFailure(err))
-//            })
-//    }
-//}
 
 const loginSuccess = (values) => ({ type: LOGIN_SUCCESS, payload: values });
 const loginFailure = (err) => ({ type: LOGOUT_FAILURE, error: err });

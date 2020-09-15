@@ -1,15 +1,7 @@
 import React from "react";
-import { StyleSheet, Linking, Image, ScrollView } from "react-native";
-import {
-  Content,
-  Text,
-  Container,
-  Button,
-  Card,
-  Icon,
-  Accordion,
-} from "native-base";
-import {useNavigation, useNavigationParam } from "react-navigation-hooks";
+import { StyleSheet, Linking, Image } from "react-native";
+import { Text, Container, Button, Icon } from "native-base";
+import { useNavigation, useNavigationParam } from "react-navigation-hooks";
 import { useDispatch, useSelector } from "react-redux";
 import { addBook, deleteBook, fetchBookList } from "../redux/actions/bookList";
 import useDimentions from "../hooks/useDimentions";
@@ -27,7 +19,7 @@ export default function BookScreen() {
   const BookListSelector = (state) => state.bookList;
   const bookList = useSelector(BookListSelector)["bookList"];
   const windowSize = useDimentions("window");
-  const {navigate} = useNavigation();
+  const { navigate } = useNavigation();
   if (item) {
     return (
       <Container style={styles.container}>

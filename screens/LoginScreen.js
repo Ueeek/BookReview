@@ -1,15 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet } from "react-native";
-import {
-  Form,
-  Input,
-  Item,
-  Text,
-  Container,
-  Button,
-  Icon,
-  Fonts,
-} from "native-base";
+import React from "react";
+import { Form, Input, Item, Text, Container, Button, Icon } from "native-base";
 import { useNavigation } from "react-navigation-hooks";
 import { useDispatch, useSelector } from "react-redux";
 import {

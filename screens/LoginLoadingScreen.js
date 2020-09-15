@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { Text } from "react-native";
 import { Button } from "native-base";
-import { useNavigationParam, useNavigation } from "react-navigation-hooks";
+import {  useNavigation } from "react-navigation-hooks";
 
 import { auth } from "../firebase";
 
-import Colors from "../constants/Colors";
 
 export default function LoginLoadingScreen() {
   const { navigate } = useNavigation();
